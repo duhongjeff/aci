@@ -1,0 +1,3 @@
+com\sg\cp\service\impl\JedisClientPool.class
+com\sg\cp\service\impl\UspfServiceImpl.class
+com\sg\cp\service\impl\JedisCluster.class
