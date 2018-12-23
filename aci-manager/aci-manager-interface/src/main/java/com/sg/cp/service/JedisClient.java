@@ -2,6 +2,8 @@ package com.sg.cp.service;
 
 import java.util.List;
 
+import com.sg.cp.pojo.Uspf;
+
 public interface JedisClient {
 	String set(String key, String value);
 	String get(String key);

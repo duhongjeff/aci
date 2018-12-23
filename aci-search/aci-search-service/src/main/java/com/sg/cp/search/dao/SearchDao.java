@@ -11,8 +11,6 @@ import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import solrtools.SearchUspf;
 import solrtools.SearchResult;
 
 
@@ -36,7 +34,8 @@ public class SearchDao {
 	 * @throws Exception
 	 */
 	public SearchResult search(SolrQuery query) throws Exception{
-		
+		return null;
+		/*
 		SearchResult searchResult = new SearchResult();
 		//1.创建solrserver对象 由spring管理 注入
 		//2.直接执行查询
@@ -75,5 +74,7 @@ public class SearchDao {
 		//5.设置SearchResult 的属性
 		searchResult.setItemList(itemlist);
 		return searchResult;
+		*/
 	}
+	
 }

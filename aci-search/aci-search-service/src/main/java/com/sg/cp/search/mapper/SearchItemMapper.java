@@ -2,8 +2,6 @@ package com.sg.cp.search.mapper;
 
 import java.util.List;
 
-import solrtools.SearchUspf;
-
 
 /**
  * 定义Mapper 关联查询3张表 查询出搜索时的商品数据
@@ -15,5 +13,4 @@ import solrtools.SearchUspf;
  */
 public interface SearchItemMapper {
 	//查询所有的商品的数据
-	public  List<SearchUspf> getSearchUspfList();
 }

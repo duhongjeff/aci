@@ -24,6 +24,13 @@
         <list><value>jspproperties</value></list>
         </property>
 	</bean>
+	
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF/ftl"/>
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+	
+	
 	<!-- 配置静态资源映射  -->
 	<!-- 指定/WEB-INF/js   /WEB-INF/css/  下的所有的静态资源包括子目录下的静态资源  都不被拦截-->
 	<!--  mapping=/js/**  :表示访问静态资源的路径的形式    可以访问 /js/下的静态资源或者所有的子目录下的静态资源-->
@@ -33,7 +40,9 @@
 	<!-- 引用dubbo服务 -->
 	<dubbo:application name="aci-web"/>
 	<dubbo:registry protocol="zookeeper" address="192.168.1.110:2181"/>	
-	<dubbo:reference interface="com.sg.cp.service.UspfService" id="uspfService" />
+	<dubbo:reference interface="com.sg.cp.service.uspfservice.UspfService" id="uspfService" />
+	<dubbo:reference interface="com.sg.cp.service.SearchService" id="searchService" />
+	<dubbo:reference interface="com.sg.cp.service.funcservice.FuncService" id="funcService" />
 	<!-- 
 	<dubbo:reference interface="com.sg.cp.SearchService" id="searchService"/>
 	-->

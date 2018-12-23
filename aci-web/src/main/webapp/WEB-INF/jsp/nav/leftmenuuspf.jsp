@@ -14,9 +14,9 @@
 <ul id="menu" class="easyui-tree" style="margin-top: 10px; margin-left: 5px;">
 	<li><span>用户管理</span>
 		<ul>
-			<li data-options="attributes:{'url':'../uspf-list'}">基本用户</li>
-			<li data-options="attributes:{'url':'../uspfgrp-list'}">用户组</li>
-			<li data-options="attributes:{'url':'../uspfhist-list'}">历史用户</li>
+			<li data-options="attributes:{'url':'../uspf/uspf/uspf-list'}">基本用户</li>
+			<li data-options="attributes:{'url':'../uspf/usgp/uspfgrp-list'}">用户组</li>
+			<li data-options="attributes:{'url':'../uspf/uspfhist/uspfhist-list'}">历史用户</li>
 			<li data-options="attributes:{'url':'../item-list'}">公告栏</li>
 		</ul></li>
 

@@ -1,3 +1,8 @@
 com\sg\cp\service\impl\JedisClientPool.class
-com\sg\cp\service\impl\UspfServiceImpl.class
+com\sg\cp\service\impl\staticimpl\funcimpl\FuncServiceImpl.class
+com\sg\cp\service\impl\SearchServiceImpl.class
+com\sg\cp\service\impl\staticimpl\StaticGeneralService.class
+com\sg\cp\service\impl\staticimpl\uspfimpl\UspfServiceImpl.class
 com\sg\cp\service\impl\JedisCluster.class
+com\sg\cp\service\impl\TmpSolutionImpl.class
+com\sg\cp\service\dao\SearchDao.class

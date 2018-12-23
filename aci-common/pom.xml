@@ -1,14 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.sg.cp</groupId>
-    <artifactId>aci-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>aci-common</artifactId>
-  <name>aci-common</name>
-  <description>Access Interface Common 	</description>
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.sg.cp</groupId>
+		<artifactId>aci-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>aci-common</artifactId>
+	<name>aci-common</name>
+	<description>Access Interface Common 	</description>
+	<dependencies>
 		<!-- 时间操作组件 -->
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -37,6 +39,11 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.sg.cp</groupId>
+			<artifactId>aci-manager-pojo</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<!-- quartz任务调度框架 -->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
@@ -47,6 +54,10 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
 		</dependency>
 		<!-- 日志处理 -->
 		<dependency>

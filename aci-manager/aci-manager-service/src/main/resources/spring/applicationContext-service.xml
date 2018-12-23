@@ -17,5 +17,7 @@
 	<!-- 用dubbo协议在20880端口暴露服务 -->
 	<dubbo:protocol name="dubbo" port="20880" />
 	<!-- 声明需要暴露的服务接口 -->
-	<dubbo:service interface="com.sg.cp.service.UspfService" ref="uspfServiceImpl" />
+	<dubbo:service interface="com.sg.cp.service.uspfservice.UspfService" ref="uspfServiceImpl" />
+	<dubbo:service interface="com.sg.cp.service.SearchService" ref="searchServiceImpl" />
+	<dubbo:service interface="com.sg.cp.service.funcservice.FuncService" ref="funcServiceImpl" />
 </beans>

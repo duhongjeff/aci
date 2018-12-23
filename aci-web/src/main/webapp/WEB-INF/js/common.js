@@ -30,11 +30,14 @@ var TT = TAOTAO = {
 		dir : "image"
 	},
 	// 格式化时间
-	formatDateTime : function(val,row){
-		var now = new Date(val);
+	formatDateTime : function(target){
+		if(target==null) return;
+		var array = target.toString().split("");
+		var newVal=array[0]+array[1]+array[2]+array[3]+"-"+array[4]+array[5]+"-"+array[6]+array[7];
+		var now = new Date(newVal);	
     	return now.format("yyyy-MM-dd hh:mm:ss");
 	},
-	formatDateTimeToLong : function(val,row){
+	formatDateTimeToLong : function(val){
 		var now = new Date(val);
 		return now.format("yyyyMMdd");
 	},

@@ -2,6 +2,8 @@ package com.sg.cp.mapper;
 
 import com.sg.cp.pojo.Usgp;
 import com.sg.cp.pojo.UsgpExample;
+import com.sg.cp.pojo.Uspf;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -61,4 +63,6 @@ public interface UsgpMapper {
      * @mbggenerated Fri Nov 30 21:51:12 CST 2018
      */
     int updateByExample(@Param("record") Usgp record, @Param("example") UsgpExample example);
+    
+    List<Usgp> selectusgpandmatchingusers(@Param("status") String status);
 }

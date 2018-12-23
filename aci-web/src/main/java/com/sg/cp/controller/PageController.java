@@ -22,4 +22,24 @@ public class PageController {
 		System.out.print(page);
 		return "nav/"+page;
 	}
+	
+	@RequestMapping("/uspf/{type}/{target}")
+	public String displayUspfMain(@PathVariable String type,@PathVariable String target){
+		return "uspf/"+type+"/"+target;
+	}
+	
+	@RequestMapping("/func/{type}/{target}")
+	public String displayFuncMain(@PathVariable String type,@PathVariable String target){
+		return "func/"+type+"/"+target;
+	}
+	
+	@RequestMapping("/fugp/{type}/{target}")
+	public String displayFugpMain(@PathVariable String type,@PathVariable String target){
+		return "fugp/"+type+"/"+target;
+	}
+	
+	@RequestMapping("/setting/{target}")
+	public String displaySettingMain(@PathVariable String target){
+		return "setting/"+target;
+	}
 }

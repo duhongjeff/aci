@@ -2,6 +2,8 @@ package solrtools;
 
 import java.io.Serializable;
 import java.util.List;
+
+import com.sg.cp.model.UspfEnh;
 /**
  * 商品搜索的分页信息结果对象
  * @title SearchResult.java
@@ -11,14 +13,14 @@ import java.util.List;
  * @version 1.0
  */
 public class SearchResult implements Serializable {
-	private List<SearchUspf> itemList;// 搜索结果列表
+	private List<UspfEnh> uspfList;// 搜索结果列表
 	private long recordCount;// 总记录数
 	private long pageCount;// 总页数
-	public List<SearchUspf> getItemList() {
-		return itemList;
+	public List<UspfEnh> getUspfList() {
+		return uspfList;
 	}
-	public void setItemList(List<SearchUspf> itemList) {
-		this.itemList = itemList;
+	public void setUspfList(List<UspfEnh> uspfList) {
+		this.uspfList = uspfList;
 	}
 	public long getRecordCount() {
 		return recordCount;
@@ -32,5 +34,8 @@ public class SearchResult implements Serializable {
 	public void setPageCount(long pageCount) {
 		this.pageCount = pageCount;
 	}
+	
+	
+
 
 }

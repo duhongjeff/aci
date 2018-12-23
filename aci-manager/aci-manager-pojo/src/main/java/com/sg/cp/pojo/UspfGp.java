@@ -226,4 +226,10 @@ public class UspfGp implements Serializable{
     public void setLupby(String lupby) {
         this.lupby = lupby == null ? null : lupby.trim();
     }
+
+	@Override
+	public String toString() {
+		return "UspfGp [userid=" + userid + ", usgpid=" + usgpid + "]";
+	}
+    
 }

@@ -1,6 +1,7 @@
 package com.sg.cp.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Uspf implements Serializable{
     /**
@@ -578,4 +579,26 @@ public class Uspf implements Serializable{
     public void setLupby(String lupby) {
         this.lupby = lupby == null ? null : lupby.trim();
     }
+
+	/*-- Below part is maintained mannually --*/
+    private List<Usgp> usgps; 
+    
+	public List<Usgp> getUsgps() {
+		return usgps;
+	}
+
+	public void setUsgps(List<Usgp> usgps) {
+		this.usgps = usgps;
+	}
+
+	@Override
+	public String toString() {
+		return "Uspf [userid=" + userid + ", reporterid=" + reporterid + ", realname=" + realname + ", gender=" + gender
+				+ ", email=" + email + ", telno=" + telno + ", wechatno=" + wechatno + ", addr=" + addr + ", dob=" + dob
+				+ ", expirydate=" + expirydate + ", designation=" + designation + ", status=" + status
+				+ ", terminationdate=" + terminationdate + ", credate=" + credate + ", lupdate=" + lupdate + ", remark="
+				+ remark + ", creby=" + creby + ", lupby=" + lupby + ", usgps=" + usgps + "]";
+	}
+	
+	
 }

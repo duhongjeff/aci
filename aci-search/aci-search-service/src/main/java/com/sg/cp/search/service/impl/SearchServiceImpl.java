@@ -14,7 +14,6 @@ import com.sg.cp.search.dao.SearchDao;
 import com.sg.cp.search.mapper.SearchItemMapper;
 
 import easyuitools.CommonResult;
-import solrtools.SearchUspf;
 import solrtools.SearchResult;
 
 @Service
@@ -27,7 +26,9 @@ public class SearchServiceImpl implements SearchService {
 	
 	@Autowired
 	private SearchDao searchdao;
+	/*
 	@Override
+	
 	public CommonResult importAllSearchItems() throws Exception{
 		//1.注入mapper 
 		//2.调用mapper的方法   查询所有的商品的数据
@@ -47,6 +48,7 @@ public class SearchServiceImpl implements SearchService {
 		solrserver.commit();
 		return CommonResult.ok();
 	}
+	*/
 	@Override
 	public SearchResult search(String queryString, Integer page, Integer rows) throws Exception {
 		//1.创建solrquery对象  
@@ -63,12 +65,12 @@ public class SearchServiceImpl implements SearchService {
 		query.setStart((page-1)*rows);//page-1 * rows
 		query.setRows(rows);
 		//2.2.设置默认的搜索域
-		query.set("df", "item_keywords");
+		//query.set("df", "item_keywords");
 		//2.3设置高亮
-		query.setHighlight(true);
-		query.setHighlightSimplePre("<em style=\"color:red\">");
-		query.setHighlightSimplePost("</em>");
-		query.addHighlightField("item_title");//设置高亮显示的域
+		//query.setHighlight(true);
+		//query.setHighlightSimplePre("<em style=\"color:red\">");
+		//query.setHighlightSimplePost("</em>");
+		//query.addHighlightField("item_title");//设置高亮显示的域
 		
 		//3.调用dao的方法 返回的是SearchResult 只包含了总记录数和商品的列表
 		SearchResult search = searchdao.search(query);
@@ -81,6 +83,11 @@ public class SearchServiceImpl implements SearchService {
 		search.setPageCount(pageCount);
 		//5.返回
 		return search;
+	}
+	@Override
+	public CommonResult importAllSearchItems() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

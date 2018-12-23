@@ -1,6 +1,7 @@
 package com.sg.cp.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Usgp implements Serializable {
     /**
@@ -274,4 +275,16 @@ public class Usgp implements Serializable {
     public void setLupby(String lupby) {
         this.lupby = lupby == null ? null : lupby.trim();
     }
+    
+	public List<Uspf> getUspfs() {
+		return uspfs;
+	}
+
+	public void setUspfs(List<Uspf> uspfs) {
+		this.uspfs = uspfs;
+	}
+
+	/*-- Below part is maintained mannually --*/
+    private List<Uspf> uspfs; 
+    
 }

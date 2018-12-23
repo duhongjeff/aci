@@ -1,4 +1,8 @@
+com\sg\cp\mapper\FuncMapper.class
+com\sg\cp\mapper\SearchItemMapper.class
+com\sg\cp\mapper\UsgpFugpMapper.class
 com\sg\cp\mapper\UspfGpMapper.class
 com\sg\cp\mapper\UscrMapper.class
 com\sg\cp\mapper\UspfMapper.class
+com\sg\cp\mapper\FugpMapper.class
 com\sg\cp\mapper\UsgpMapper.class

@@ -36,11 +36,13 @@
 		<zookeeper.version>3.4.7</zookeeper.version>
 		<zkclient.version>0.1</zkclient.version>
 		<activemq.version>5.13.0</activemq.version>
-		<freemarker.version>2.3.23</freemarker.version>
+		<freemarker.version>2.3.28</freemarker.version>
 		<quartz.version>2.2.2</quartz.version>
 		<pagehelper.version>5.1.2</pagehelper.version>
 		<commons-lang.version>2.6</commons-lang.version>
 		<json-lib.version>2.3</json-lib.version>
+		<javax-annotation.version>1.3.2</javax-annotation.version>
+		<json.version>20180813</json.version>
 	</properties>
 
 	<dependencyManagement>
@@ -245,6 +247,17 @@
 				<artifactId>json-lib</artifactId>
 				<version>${json-lib.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>javax.annotation</groupId>
+				<artifactId>javax.annotation-api</artifactId>
+				<version>${javax-annotation.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.json</groupId>
+				<artifactId>json</artifactId>
+				<version>${json.version}</version>
+			</dependency>
+
 
 		</dependencies>
 	</dependencyManagement>

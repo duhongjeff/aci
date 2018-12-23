@@ -1,3 +1,8 @@
-D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\UspfServiceImpl.java
+D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\dao\SearchDao.java
 D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\JedisCluster.java
+D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\SearchServiceImpl.java
+D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\TmpSolutionImpl.java
 D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\JedisClientPool.java
+D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\staticimpl\StaticGeneralService.java
+D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\staticimpl\uspfimpl\UspfServiceImpl.java
+D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\staticimpl\funcimpl\FuncServiceImpl.java

@@ -22,4 +22,18 @@ public class CommonEnums {
 			
 		   
 	   }
+	   
+	   public enum AndOrNull{
+		   AND("and"),Or("Or"),Null("null");
+		   
+		   AndOrNull(String desc) {
+				this.desc = desc;
+			}
+
+			private final String desc;
+
+			public String getAndOrNull() {
+				return desc;
+			}
+	   }
 }

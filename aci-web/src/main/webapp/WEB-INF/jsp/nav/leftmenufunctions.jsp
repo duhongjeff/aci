@@ -11,16 +11,34 @@
 <script type="text/javascript" src="js/common.js"></script>
 
 
-    <div id="test" data-options="region:'west',title:'菜单',split:true" style="width:180px;">
-		    	<ul id="menu" class="easyui-tree" style="margin-top: 10px;margin-left: 5px;">
-         	<li>
-         		<span>功能管理</span>
-         		<ul>
-	         		<li data-options="attributes:{'url':'item-add'}">功能</li>
-	         		<li data-options="attributes:{'url':'item-list'}">功能组</li>
-	         		<li data-options="attributes:{'url':'item-list'}">功能组-用户</li>
-	         	</ul>
-         	</li>
+<ul id="menu" class="easyui-tree" style="margin-top: 10px; margin-left: 5px;">
+	<li><span>功能管理</span>
+		<ul>
+			<li data-options="attributes:{'url':'../func/func/func-list'}">功能</li>
+			<li data-options="attributes:{'url':'../func/fugp/fugp-list'}">功能组</li>
+		</ul></li>
 
-         </ul>
-    </div>
+</ul>
+
+<script type="text/javascript">
+$(function(){
+	$('#menu').tree({
+		onClick: function(node){
+			if($('#menu').tree("isLeaf",node.target)){
+				var tabs = $("#tabs");
+				var tab = tabs.tabs("getTab",node.text);
+				if(tab){
+					tabs.tabs("select",node.text);
+				}else{
+					tabs.tabs('add',{
+					    title:node.text,
+					    href: node.attributes.url,
+					    closable:true,
+					    bodyCls:"content"
+					});
+				}
+			}
+		}
+	});
+});
+</script>

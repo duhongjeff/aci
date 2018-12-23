@@ -95,6 +95,7 @@ public class JedisClientPool implements JedisClient {
 		List list = new ArrayList();
 		try {
 			String json = this.hget(key1, key2);
+			System.out.println("json is "+ json);
 			//判断json是否为空
 			if (StringUtils.isNotBlank(json)) {
 				//把json转换成list
