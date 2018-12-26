@@ -1,0 +1,16 @@
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:43 +0800] "GET / HTTP/1.1" 200 1976 http-bio-8081-exec-1 448
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:45 +0800] "GET /nav/leftmenuuspf HTTP/1.1" 200 1651 http-bio-8081-exec-3 347
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:45 +0800] "GET /js/jquery-easyui-1.4.1/jquery.easyui.min.js?_=1545474044015 HTTP/1.1" 200 353674 http-bio-8081-exec-4 16
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:45 +0800] "GET /js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js?_=1545474044016 HTTP/1.1" 200 2487 http-bio-8081-exec-5 4
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:45 +0800] "GET /js/common.js?_=1545474044017 HTTP/1.1" 200 9386 http-bio-8081-exec-6 3
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:46 +0800] "GET /nav/leftmenufunctions HTTP/1.1" 200 1477 http-bio-8081-exec-7 36
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:46 +0800] "GET /js/jquery-easyui-1.4.1/jquery.easyui.min.js?_=1545474044018 HTTP/1.1" 200 353674 http-bio-8081-exec-8 11
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:46 +0800] "GET /js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js?_=1545474044019 HTTP/1.1" 200 2487 http-bio-8081-exec-9 3
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:46 +0800] "GET /js/common.js?_=1545474044020 HTTP/1.1" 200 9386 http-bio-8081-exec-10 1
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:47 +0800] "GET /func/func/func-list?_=1545474044021 HTTP/1.1" 200 3777 http-bio-8081-exec-10 85
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:48 +0800] "GET /func/list?page=1&rows=30 HTTP/1.1" 200 537 http-bio-8081-exec-10 491
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:48 +0800] "GET /func/func/func-search?_=1545474044022 HTTP/1.1" 200 1462 http-bio-8081-exec-10 49
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:49 +0800] "GET /js/kindeditor-4.1.10/kindeditor-all-min.js?_=1545474044023 HTTP/1.1" 200 179915 http-bio-8081-exec-10 6
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:49 +0800] "GET /js/kindeditor-4.1.10/lang/zh_CN.js?_=1545474044024 HTTP/1.1" 200 8488 http-bio-8081-exec-10 2
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:56 +0800] "POST /func/search HTTP/1.1" 200 - http-bio-8081-exec-10 129
+0:0:0:0:0:0:0:1 - - [22/Dec/2018:18:20:57 +0800] "GET /func/list?page=1&rows=30 HTTP/1.1" 200 537 http-bio-8081-exec-10 22
