@@ -42,4 +42,9 @@ public class PageController {
 	public String displaySettingMain(@PathVariable String target){
 		return "setting/"+target;
 	}
+	
+	@RequestMapping("/sso/{target}")
+	public String displaySSOMain(@PathVariable String target){
+		return "sso/"+target;
+	}
 }

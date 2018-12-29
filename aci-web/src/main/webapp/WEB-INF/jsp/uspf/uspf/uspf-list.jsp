@@ -24,9 +24,9 @@
 </table>
 <div id="itemEditWindow" class="easyui-window" title="编辑用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/uspf/uspf/uspf-edit'" style="width:80%;height:80%;padding:10px;">
 </div>
-<div id="itemAddWindow" class="easyui-window" title="新建用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:''/uspf/uspf/uspf-add'" style="width:80%;height:80%;padding:10px;">
+<div id="itemAddWindow" class="easyui-window" title="新建用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/uspf/uspf/uspf-add'" style="width:80%;height:80%;padding:10px;">
 </div>
-<div id="itemSearchWindow" class="easyui-window" title="搜索" data-options="modal:true,closed:true,iconCls:'icon-save',href:''/uspf/uspf/uspf-search'" style="width:80%;height:80%;padding:10px;">
+<div id="itemSearchWindow" class="easyui-window" title="搜索" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/uspf/uspf/uspf-search'" style="width:80%;height:80%;padding:10px;">
 </div>
 <script>
 

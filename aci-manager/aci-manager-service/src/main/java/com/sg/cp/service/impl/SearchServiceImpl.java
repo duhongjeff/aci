@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageInfo;
-import com.sg.cp.mapper.SearchItemMapper;
 import com.sg.cp.pojo.Uspf;
 import com.sg.cp.service.JedisClient;
 import com.sg.cp.service.SearchService;
@@ -28,9 +27,6 @@ public class SearchServiceImpl implements SearchService {
 	@Value("${LIST_KEY}") private String LIST;
 	@Value("${SEARCH_LIST_KEY}") private String SEARCHLIST;
 	@Autowired private JedisClient jedisClient;
-	
-	@Autowired
-	private SearchItemMapper mapper;
 
 	@Autowired
 	private SolrClient solrserver;

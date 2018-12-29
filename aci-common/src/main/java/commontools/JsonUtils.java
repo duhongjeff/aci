@@ -52,10 +52,10 @@ public class JsonUtils {
      * @param beanType
      * @return
      */
-    public static <T>List<T> jsonToList(String jsonData, Class<T> beanType) {
+    public static List jsonToList(String jsonData, Class beanType) {
     	JavaType javaType = MAPPER.getTypeFactory().constructParametricType(List.class, beanType);
     	try {
-    		List<T> list = MAPPER.readValue(jsonData, javaType);
+    		List list = MAPPER.readValue(jsonData, javaType);
     		return list;
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -21,6 +21,7 @@ com\sg\cp\pojo\Func.class
 com\sg\cp\pojo\FuncExample$Criterion.class
 com\sg\cp\pojo\UspfGpExample$Criterion.class
 com\sg\cp\model\UspfEnh.class
+com\sg\cp\pojo\common\CommonPojo.class
 com\sg\cp\pojo\UsgpExample$Criteria.class
 com\sg\cp\pojo\UsgpFugpExample$Criteria.class
 com\sg\cp\pojo\Usgp.class

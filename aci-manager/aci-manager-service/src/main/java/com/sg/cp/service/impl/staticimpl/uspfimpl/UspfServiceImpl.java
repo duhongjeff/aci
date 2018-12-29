@@ -60,164 +60,113 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 	@Autowired
 	private JedisClient jedisClient;
 
-	@Value("${USERLIST_KEY}") private String USERLISTKEY;
-	@Value("${USERGRPLIST_KEY}") private String USERGRPLIST_KEY;
-	@Value("${LIST_KEY}") private String LIST;
-	@Value("${SEARCH_LIST_KEY}") private String SEARCHLIST;
+	@Value("${USERLIST_KEY}")
+	private String USERLISTKEY;
+	@Value("${USERGRPLIST_KEY}")
+	private String USERGRPLIST_KEY;
+	@Value("${LIST_KEY}")
+	private String LIST;
+	@Value("${SEARCH_LIST_KEY}")
+	private String SEARCHLIST;
 
 	@Resource(name = "topicDestination")
 	private Destination destination;
 
-	//TODO 不应该在这里做分页
-	
+	// TODO 不应该在这里做分页
+
 	@Override
 	public String[] getUspfDisplayList(Status status) {
-		List<Uspf> list=super.daoGetUspfList(status);
-		String [] target = new String[list.size()];
-		int index =0;
-		for(Uspf u :list)
-		{
-			target[index]=u.getUserid();
+		List<Uspf> list = super.daoGetUspfList(status);
+		String[] target = new String[list.size()];
+		int index = 0;
+		for (Uspf u : list) {
+			target[index] = u.getUserid();
 			index++;
 		}
 		return target;
 	}
-	
-	
+
 	@Override
 	public EasyUIDataGridResult getUspfList(Integer page, Integer rows, Status status) {
 
-		List<UspfEnh> targetlist = new ArrayList<UspfEnh>();
-		targetlist = tmpSolutionService.tmpSearchFunctionSolution(new ArrayList());
+		/* Step0: Temporary method for searching (Search --> put redis --> back to jsp
+        --> jsp reload --> here to search in redis)*/
+		
+		List<Uspf> targetlist = tmpSolutionService.tmpSearchFunctionSolution(new ArrayList());
 
+		List<Uspf> list = new ArrayList<Uspf>();
 		if (targetlist == null || targetlist.size() == 0) {
+			 /*Step1: Search in Redis list=jedisClient.queryList(LIST, USERLISTKEY);*/
 
-			List<Uspf> list = new ArrayList<Uspf>();
-			// list=jedisClient.queryList(LIST, USERLISTKEY);
-
-			// 1.设置分页的信息 使用pagehelper
+			//Step2: Set pagination by using Pagehelper
 			if (page == null)
 				page = 1;
 			if (rows == null)
 				rows = 30;
 			PageHelper.startPage(page, rows);
 
-			// 4.根据mapper调用查询所有数据的方法
+			//Step3: Get uspf list with usgp list 
 			list = daoSelectUspfwithUsgp(status);
-
-			UspfEnh enh;
-			for (Uspf p : list) {
-				enh = new UspfEnh();
-				enh.setUserid(p.getUserid());
-				enh.setRealname(p.getRealname());
-				enh.setReporterid(p.getReporterid());
-				enh.setGender(p.getGender());
-				enh.setTelno(p.getTelno());
-				enh.setAddr(p.getAddr());
-				enh.setDob(p.getDob());
-				enh.setExpirydate(p.getExpirydate());
-				enh.setDesignation(p.getDesignation());
-				enh.setStatus(p.getStatus());
-				enh.setRemark(p.getRemark());
-				
-				String usgpDesc="";
-				List<Usgp> usgpList=p.getUsgps();
-				for(Usgp u : usgpList)
-				{
-					usgpDesc+=u.getUsgpname();
-				}
-				enh.setUsergroupdesc(usgpDesc);
-				
-				targetlist.add(enh);
-			}
 		}
 
-		// 5.获取分页的信息
-		PageInfo<UspfEnh> info = new PageInfo<>(targetlist);
+		//Step4: Pagination Implementation
+		PageInfo<Uspf> info = new PageInfo<>(list);
 		EasyUIDataGridResult result = new EasyUIDataGridResult();
 		result.setTotal((int) info.getTotal());
 		result.setRows(info.getList());
-		// 7.返回
 
-		// 向缓存中添加数据
+		// Put data in redis
 		// jedisClient.addToList(LIST, USERLISTKEY, targetlist);
 		return result;
 	}
 
 	@Override
 	public EasyUIDataGridResult getUspfGrpList(Integer page, Integer rows, Status status) {
-		List<UsgpEnh> targetlist = new ArrayList<UsgpEnh>();
-		targetlist = tmpSolutionService.tmpSearchFunctionSolutionForUsgp(new ArrayList());
+		
+		/* Step0: Temporary method for searching (Search --> put redis --> back to jsp
+        --> jsp reload --> here to search in redis)*/
+		 List<Usgp> targetlist = tmpSolutionService.tmpSearchFunctionSolutionForUsgp(new ArrayList());
 
 		if (targetlist == null || targetlist.size() == 0) {
-
 			List<Usgp> list = new ArrayList<Usgp>();
-			// list=jedisClient.queryList(LIST, USERLISTKEY);
+			 /*Step1: list=jedisClient.queryList(LIST, USERLISTKEY);*/
 
-			// 1.设置分页的信息 使用pagehelper
+			//Step2: Set pagination by using Pagehelper
 			if (page == null)
 				page = 1;
 			if (rows == null)
 				rows = 30;
 			PageHelper.startPage(page, rows);
 
-
-			// 4.根据mapper调用查询所有数据的方法
-			list =super.daoGetUsgpList(status);
-
-			// Here to be optimized
-
-			UsgpEnh enh;
-			for (Usgp p : list) {
-				enh = new UsgpEnh();
-				enh.setUsgpid(p.getUsgpid());
-				enh.setUsgpiddesc(p.getUsgpid().toString());
-				enh.setUsgpname(p.getUsgpname());
-				enh.setStatus(p.getStatus());
-				enh.setLeaderid(p.getLeaderid());
-				enh.setRemark(p.getRemark());
-				
-				
-				targetlist.add(enh);
-			}
+			//Step3: Get usgp list 
+			list = super.daoGetUsgpList(status);
 		}
 
-		// 5.获取分页的信息
-		PageInfo<UsgpEnh> info = new PageInfo<>(targetlist);
+		//Step4: Pagination Implementation
+		PageInfo<Usgp> info = new PageInfo<>(targetlist);
 		EasyUIDataGridResult result = new EasyUIDataGridResult();
 		result.setTotal((int) info.getTotal());
 		result.setRows(info.getList());
 		// 7.返回
 
-		// 向缓存中添加数据
+		// Put data in redis
 		// jedisClient.addToList(LIST, USERLISTKEY, targetlist);
 		return result;
 	}
 
 	@Override
 	public CommonResult updateUspf(Uspf uspf) {
-
-		// 2.补全其他的属性
-		uspf.setLupdate(CPDateUtils.convertDateToInt(new Date(), CommonEnums.DateFormat.yyyyMMdd));
-		uspf.setStatus("A");
-		
-		String errormsg=super.daoUpdateUspf(uspf);
+		//TODO lup to be optimized
+		uspf.setLupdate(new Date());
+		super.daoUpdateUspf(uspf);
 		jedisClient.hdel(LIST, USERLISTKEY);
 		return CommonResult.ok();
 	}
-	
+
 	@Override
 	public CommonResult updateUsgp(Usgp usgp) {
-
-		// 1.注入example
-		UsgpExample example = new UsgpExample();
-		com.sg.cp.pojo.UsgpExample.Criteria criteria = example.createCriteria();
-		criteria.andUsgpidEqualTo(usgp.getUsgpid());
-
-		// 2.补全其他的属性
-		usgp.setLupdate(CPDateUtils.convertDateToInt(new Date(), CommonEnums.DateFormat.yyyyMMdd));
-		usgp.setStatus("A");
-		// 3.插入内容表中
+		//TODO lup to be optimized
+		usgp.setLupdate(new Date());
 		super.daoUpdateUsgp(usgp);
 		jedisClient.hdel(LIST, USERGRPLIST_KEY);
 		return CommonResult.ok();
@@ -225,46 +174,27 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 
 	@Override
 	public CommonResult createUspf(Uspf uspf) {
-
-		// 2.补全其他的属性
-		uspf.setCredate(CPDateUtils.convertDateToInt(new Date(), CommonEnums.DateFormat.yyyyMMdd));
-		uspf.setLupdate(CPDateUtils.convertDateToInt(new Date(), CommonEnums.DateFormat.yyyyMMdd));
-
-		// 3.插入内容表中
-		String msg=super.daoCreateUspf(uspf);
+		super.daoCreateUspf(uspf);
 		return CommonResult.ok();
 	}
-	
+
 	@Override
 	public CommonResult createUsgp(Usgp usgp) {
-
-		// 2.补全其他的属性
-		usgp.setCredate(CPDateUtils.convertDateToInt(new Date(), CommonEnums.DateFormat.yyyyMMdd));
-		usgp.setCreby("duhong");
-		usgp.setLupdate(CPDateUtils.convertDateToInt(new Date(), CommonEnums.DateFormat.yyyyMMdd));
-		usgp.setLupby("duhong");
-		
-		// 3.插入内容表中
-		String msg=super.daoCreateUsgp(usgp);
+		super.daoCreateUsgp(usgp);
 		return CommonResult.ok();
 	}
 
 	@Override
 	public CommonResult deleteUspf(String userid) {
-		String msg=null;
-		msg=super.daoDeleteUspfById(userid);
+	    String msg=super.daoDeleteUspfById(userid);
 		return CommonResult.ok();
 	}
-	
+
 	@Override
 	public CommonResult deleteUsgp(String usgpid) {
-
-		String msg=null;
-		msg=super.daoDeleteUsgpById(Integer.valueOf(usgpid));
-
+		String msg=super.daoDeleteUsgpById(Integer.valueOf(usgpid));
 		return CommonResult.ok();
 	}
-
 
 	@Override
 	public EasyUIDataGridResult searchUspf(Uspf uspf) throws Exception {
@@ -302,7 +232,7 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 
 		return result;
 	}
-	
+
 	@Override
 	public EasyUIDataGridResult searchUsgp(Usgp usgp) throws Exception {
 
@@ -313,17 +243,16 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 
 		SolrDocumentList searchList = searchservice.searchSolrDocumentList(map);
 		EasyUIDataGridResult result = new EasyUIDataGridResult();
-		
-		if(searchList==null)
+
+		if (searchList == null)
 			return result;
-		
+
 		for (SolrDocument solrDocument : searchList) {
 			Usgp item = new Usgp();
 			item.setUsgpname(solrDocument.get("usgpname").toString());
 
 			usgpList.add(item);
 		}
-		
 
 		if (usgpList.size() > 0) {
 			PageInfo<Usgp> info = new PageInfo<>(usgpList);
@@ -335,42 +264,31 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 		return result;
 	}
 
-
 	@Override
 	public CommonResult getUsgpAndMatchingUsers() {
-		List<Usgp> list=usgpmapper.selectusgpandmatchingusers(Status.A.name());
+		List<Usgp> list = usgpmapper.selectusgpandmatchingusers(Status.A.name());
 
-	    
-	    CommonResult commonResult = new CommonResult(list);
-		
+		CommonResult commonResult = new CommonResult(list);
+
 		return commonResult;
 	}
 
-
 	@Override
-	public CommonResult matchUsgp(List<Map<String,String>> list) {
-		
-		
-		
-		for(Map<String,String> m :list)
-		{
-			Usgp usgp=new Usgp();
+	public CommonResult matchUsgp(List<Map<String, String>> list) {
+
+		for (Map<String, String> m : list) {
+			Usgp usgp = new Usgp();
 			UsgpExample example = new UsgpExample();
 			com.sg.cp.pojo.UsgpExample.Criteria criteria = example.createCriteria();
-			int usgpId=0;
-			for (Map.Entry<String, String> entry : m.entrySet())
-			{
-				
-				if(entry.getKey().trim().equalsIgnoreCase("nub"))
-				{
+			int usgpId = 0;
+			for (Map.Entry<String, String> entry : m.entrySet()) {
+
+				if (entry.getKey().trim().equalsIgnoreCase("nub")) {
 					criteria.andUsgpnameEqualTo(entry.getValue());
-					usgpId=usgpmapper.selectByExample(example).get(0).getUsgpid();
-				}
-				else
-				{
-					if(usgp!=null && !entry.getValue().trim().isEmpty())
-					{
-						System.out.println(entry.getKey()+" -->"+entry.getValue());
+					usgpId = usgpmapper.selectByExample(example).get(0).getUsgpid();
+				} else {
+					if (usgp != null && !entry.getValue().trim().isEmpty()) {
+						System.out.println(entry.getKey() + " -->" + entry.getValue());
 						UspfGp ug = new UspfGp();
 						ug.setUsgpid(usgpId);
 						ug.setUserid(entry.getValue());
@@ -378,11 +296,10 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 					}
 				}
 			}
-			//usgp.setUspfs(listUspf);
-			
+			// usgp.setUspfs(listUspf);
+
 		}
-		
-		
+
 		return CommonResult.ok();
 	}
 

@@ -20,4 +20,6 @@
 	<dubbo:service interface="com.sg.cp.service.uspfservice.UspfService" ref="uspfServiceImpl" />
 	<dubbo:service interface="com.sg.cp.service.SearchService" ref="searchServiceImpl" />
 	<dubbo:service interface="com.sg.cp.service.funcservice.FuncService" ref="funcServiceImpl" />
+	<dubbo:service interface="com.sg.cp.service.sso.UserRegisterService" ref="userRegisterServiceImpl" timeout="300000"/>
+	<dubbo:service interface="com.sg.cp.service.sso.UserLoginService" ref="userLoginServiceImpl" timeout="300000"/>
 </beans>

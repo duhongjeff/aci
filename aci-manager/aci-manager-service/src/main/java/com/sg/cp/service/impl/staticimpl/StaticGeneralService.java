@@ -119,13 +119,11 @@ public class StaticGeneralService{
 	
 	//Update
 	protected String daoUpdateUsgp(Usgp usgp) {
-		
-		String msg = null;
 		UsgpExample example = new UsgpExample();
 		com.sg.cp.pojo.UsgpExample.Criteria criteria = example.createCriteria();
 		criteria.andUsgpidEqualTo(usgp.getUsgpid());
 		usgpmapper.updateByExampleSelective(usgp, example);
-		return msg;
+		return null;
 	}
 	
 	//-------------------Func-------------------------------
@@ -133,7 +131,6 @@ public class StaticGeneralService{
 	protected List<Func> daoGetFuncList(Status status){
 		FuncExample example = new FuncExample();
 		com.sg.cp.pojo.FuncExample.Criteria funcCriteria = example.createCriteria();
-		funcCriteria.andActiveEqualTo(status.name());
 		return funcMapper.selectByExample(example);
 	}
 	

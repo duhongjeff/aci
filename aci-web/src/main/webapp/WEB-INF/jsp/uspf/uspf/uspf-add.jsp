@@ -37,13 +37,13 @@
 			</tr>
 			<tr>
 				<td>生日</td>
-				<td><input class="easyui-datebox" type="text" name="dob"
-					data-options="formatter:TAOTAO.formatDateTimeToLong" /></td>
+				<td><input id="dobid" class="easyui-datebox"  type="text" name="dob"
+					/></td>
 			</tr>
 			<tr>
 				<td>有效期</td>
-				<td><input class="easyui-datebox" type="text" name="expirydate"
-					data-options="formatter:TAOTAO.formatDateTimeToLong" /></td>
+				<td><input id="expirydateid" class="easyui-datebox" 
+					name="expirydate" /></td>
 			</tr>
 			<tr>
 				<td>职位</td>
@@ -64,6 +64,8 @@
 	</div>
 </div>
 <script type="text/javascript">
+
+
 	var itemAddEditor ;
 	//页面初始化完毕后执行此方法
 	$(function(){

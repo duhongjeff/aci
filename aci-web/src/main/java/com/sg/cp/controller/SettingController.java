@@ -93,7 +93,6 @@ public class SettingController {
 				SolrInputDocument document = new SolrInputDocument();
 				document.addField("functionid", u.getFunctionid());
 				document.addField("functionname", u.getFunctionname());
-				document.addField("desc", u.getDesc());
 				solrServer.add(document);
 				solrServer.commit();
 			}

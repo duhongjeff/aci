@@ -43,6 +43,8 @@
 	<dubbo:reference interface="com.sg.cp.service.uspfservice.UspfService" id="uspfService" />
 	<dubbo:reference interface="com.sg.cp.service.SearchService" id="searchService" />
 	<dubbo:reference interface="com.sg.cp.service.funcservice.FuncService" id="funcService" />
+	<dubbo:reference interface="com.sg.cp.service.sso.UserRegisterService" id="userRegisterService" timeout="300000"/>	
+	<dubbo:reference interface="com.sg.cp.service.sso.UserLoginService" id="userLoginService" timeout="300000"/>	
 	<!-- 
 	<dubbo:reference interface="com.sg.cp.SearchService" id="searchService"/>
 	-->

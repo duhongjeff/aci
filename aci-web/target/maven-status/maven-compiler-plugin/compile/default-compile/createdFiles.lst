@@ -1,6 +1,8 @@
 com\sg\cp\controller\UspfController.class
 com\sg\cp\controller\HtmlGenController.class
 com\sg\cp\listener\GenHtmMessageListener.class
+com\sg\cp\controller\sso\UserLoginController.class
+com\sg\cp\controller\sso\UserRegisterController.class
 com\sg\cp\controller\FuncController.class
 com\sg\cp\controller\display\UspfDisplayController.class
 com\sg\cp\controller\PageController.class

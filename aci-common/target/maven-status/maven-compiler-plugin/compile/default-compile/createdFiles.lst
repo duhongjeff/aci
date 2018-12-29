@@ -1,6 +1,7 @@
 commontools\CommonEnums$DateFormat.class
 easyuitools\EasyUITreeNode.class
 commontools\CommonEnums$AndOrNull.class
+commontools\CookieUtils.class
 commontools\CPDateUtils.class
 commontools\JsonArray.class
 easyuitools\EasyUIDataGridResult.class

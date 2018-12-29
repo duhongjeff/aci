@@ -1,17 +1,12 @@
 package com.sg.cp.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,16 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.sg.cp.pojo.Usgp;
 import com.sg.cp.pojo.Uspf;
-import com.sg.cp.service.SearchService;
 import com.sg.cp.service.uspfservice.UspfService;
-
 import commontools.CommonEnums;
 import easyuitools.CommonResult;
 import easyuitools.EasyUIDataGridResult;
-import solrtools.SearchResult;
 
 @Controller
 public class UspfController {

@@ -57,8 +57,6 @@ public class FuncServiceImpl extends StaticGeneralService implements FuncService
 			List<String> desc=(List<String>)  (solrDocument.getFieldValue("desc"));
 			item.setFunctionid(Integer.valueOf(functionid.get(0)));
 			item.setFunctionname(functionname.get(0));
-			item.setDesc(desc.get(0));
-			
 			System.out.println(item.toString());
 
 			funcList.add(item);
@@ -102,9 +100,6 @@ public class FuncServiceImpl extends StaticGeneralService implements FuncService
 
 	@Override
 	public CommonResult updateFunc(Func func) {
-		func.setLupdate(CPDateUtils.convertDateToInt(new Date(), CommonEnums.DateFormat.yyyyMMdd));
-		func.setActive("A");
-		
 		String errormsg=super.daoUpdateFunc(func);
 		return CommonResult.ok();
 	}
@@ -118,10 +113,6 @@ public class FuncServiceImpl extends StaticGeneralService implements FuncService
 
 	@Override
 	public CommonResult createFunc(Func func) {
-		// 2.补全其他的属性
-		func.setCredate(CPDateUtils.convertDateToInt(new Date(), CommonEnums.DateFormat.yyyyMMdd));
-		func.setLupdate(CPDateUtils.convertDateToInt(new Date(), CommonEnums.DateFormat.yyyyMMdd));
-
 		// 3.插入内容表中
 		String msg=super.daoCreateFunc(func);
 		return CommonResult.ok();
@@ -157,9 +148,6 @@ public class FuncServiceImpl extends StaticGeneralService implements FuncService
 
 	@Override
 	public CommonResult updateFugp(Fugp fugp) {
-		fugp.setLupdate(CPDateUtils.convertDateToInt(new Date(), CommonEnums.DateFormat.yyyyMMdd));
-		fugp.setActive(0);
-		
 		String errormsg=super.daoUpdateFugp(fugp);
 		return CommonResult.ok();
 	}
@@ -174,9 +162,6 @@ public class FuncServiceImpl extends StaticGeneralService implements FuncService
 	@Override
 	public CommonResult createFugp(Fugp fugp) {
 		// 2.补全其他的属性
-		fugp.setCredate(CPDateUtils.convertDateToInt(new Date(), CommonEnums.DateFormat.yyyyMMdd));
-		fugp.setLupdate(CPDateUtils.convertDateToInt(new Date(), CommonEnums.DateFormat.yyyyMMdd));
-
 		// 3.插入内容表中
 		String msg=super.daoCreateFugp(fugp);
 		return CommonResult.ok();

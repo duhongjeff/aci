@@ -1,3 +1,12 @@
+$.fn.datebox.defaults.parser = function(s){
+	var t = Date.parse(s);
+	if (!isNaN(t)){
+		return new Date(t);
+	} else {
+		return new Date();
+	}
+}
+
 Date.prototype.format = function(format){ 
     var o =  { 
     "M+" : this.getMonth()+1, //month 
@@ -38,6 +47,7 @@ var TT = TAOTAO = {
     	return now.format("yyyy-MM-dd hh:mm:ss");
 	},
 	formatDateTimeToLong : function(val){
+		alert(val);
 		var now = new Date(val);
 		return now.format("yyyyMMdd");
 	},
