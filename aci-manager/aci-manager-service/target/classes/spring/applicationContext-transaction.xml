@@ -32,8 +32,14 @@
 		</tx:attributes>
 	</tx:advice>
 	<!-- 切面 -->
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	<bean id="dalAop" class="com.sg.cp.service.aop.AOPTest" />
 	<aop:config>
-		<aop:advisor advice-ref="txAdvice"
-			pointcut="execution(* com.sg.cp.service.*.*(..))" />
-	</aop:config>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.sg.cp.service.*.*(..))" />
+			<aop:aspect ref="dalAop" >
+				<aop:before method="beforeInsert" pointcut="execution(* com.sg.cp.service.impl.staticimpl..*.create*(..))" />
+				<aop:before method="beforeUpdate" pointcut="execution(* com.sg.cp.service.impl.staticimpl..*.update*(..))" />
+			</aop:aspect>
+    </aop:config>
+	
 </beans>

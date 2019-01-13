@@ -1,5 +1,6 @@
 package commontools;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,5 +15,16 @@ public class CPDateUtils {
 		 SimpleDateFormat sdf =new SimpleDateFormat(DATE_FORMAT);
 		return  Long.valueOf(sdf.format(target));
 		
+	}
+	
+	public static Date ConvertStringToDate(String target,String dateFormat) 
+	{
+		 SimpleDateFormat sdf =new SimpleDateFormat(dateFormat);
+		 try {
+			return sdf.parse(target);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return  null;
 	}
 }

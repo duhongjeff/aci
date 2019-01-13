@@ -14,7 +14,7 @@ public interface JedisClient {
 	Long hset(String key, String field, String value);
 	String hget(String key, String field);
 	Long hdel(String key, String... field);  
-	
+	Long del(String key);  
 	List queryList(String key1,String key2);
 	void addToList(String key1,String key2,List list);
 }

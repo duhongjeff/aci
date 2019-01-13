@@ -16,6 +16,7 @@ import org.apache.solr.common.SolrDocumentList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import com.alibaba.dubbo.common.json.JSONArray;
 import com.github.pagehelper.PageHelper;
@@ -25,6 +26,7 @@ import com.sg.cp.mapper.UspfGpMapper;
 import com.sg.cp.mapper.UspfMapper;
 import com.sg.cp.model.UsgpEnh;
 import com.sg.cp.model.UspfEnh;
+import com.sg.cp.pojo.Uscr;
 import com.sg.cp.pojo.Usgp;
 import com.sg.cp.pojo.UsgpExample;
 import com.sg.cp.pojo.Uspf;
@@ -85,6 +87,11 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 		}
 		return target;
 	}
+	
+	@Override
+	public List<Uspf> getUspfList(Status status) {
+		return super.daoGetUspfList(status);
+	}
 
 	@Override
 	public EasyUIDataGridResult getUspfList(Integer page, Integer rows, Status status) {
@@ -107,8 +114,19 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 
 			//Step3: Get uspf list with usgp list 
 			list = daoSelectUspfwithUsgp(status);
+			for(Uspf uspf:list)
+			{
+				String usgpDesc="";
+				List<Usgp> usgpList=uspf.getUsgps();
+				for(Usgp usgp:usgpList)
+				{
+					usgpDesc=usgpDesc+usgp.getUsgpname()+" ";
+				}
+				uspf.setUsgpDesc(usgpDesc);
+				System.out.print(uspf);
+			}
 		}
-
+		
 		//Step4: Pagination Implementation
 		PageInfo<Uspf> info = new PageInfo<>(list);
 		EasyUIDataGridResult result = new EasyUIDataGridResult();
@@ -126,9 +144,9 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 		/* Step0: Temporary method for searching (Search --> put redis --> back to jsp
         --> jsp reload --> here to search in redis)*/
 		 List<Usgp> targetlist = tmpSolutionService.tmpSearchFunctionSolutionForUsgp(new ArrayList());
-
+		 List<Usgp> list = new ArrayList<Usgp>();
 		if (targetlist == null || targetlist.size() == 0) {
-			List<Usgp> list = new ArrayList<Usgp>();
+			
 			 /*Step1: list=jedisClient.queryList(LIST, USERLISTKEY);*/
 
 			//Step2: Set pagination by using Pagehelper
@@ -143,7 +161,7 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 		}
 
 		//Step4: Pagination Implementation
-		PageInfo<Usgp> info = new PageInfo<>(targetlist);
+		PageInfo<Usgp> info = new PageInfo<>(list);
 		EasyUIDataGridResult result = new EasyUIDataGridResult();
 		result.setTotal((int) info.getTotal());
 		result.setRows(info.getList());
@@ -157,7 +175,6 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 	@Override
 	public CommonResult updateUspf(Uspf uspf) {
 		//TODO lup to be optimized
-		uspf.setLupdate(new Date());
 		super.daoUpdateUspf(uspf);
 		jedisClient.hdel(LIST, USERLISTKEY);
 		return CommonResult.ok();
@@ -197,14 +214,39 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 	}
 
 	@Override
-	public EasyUIDataGridResult searchUspf(Uspf uspf) throws Exception {
+	public EasyUIDataGridResult searchUspf(Map<String, String> map, String className) throws Exception {
 
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("userid", uspf.getUserid());
+		Uspf u = new Uspf();
+		for (Map.Entry<String, String> entry : map.entrySet()) { 
+		  System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue()); 
+		  if(entry.getKey().equalsIgnoreCase("userid"))
+			  u.setUserid(entry.getValue().toString());
+		  if(entry.getKey().equalsIgnoreCase("realname"))
+			  u.setRealname(entry.getValue().toString());
+		}
+		
+		List<Uspf> list = super.daoSearchUspf(u);
+		for(Uspf uspf:list)
+		{
+			String usgpDesc="";
+			List<Usgp> usgpList=uspf.getUsgps();
+			for(Usgp usgp:usgpList)
+			{
+				usgpDesc=usgpDesc+usgp.getUsgpname()+" ";
+			}
+			uspf.setUsgpDesc(usgpDesc);
+			System.out.print(uspf);
+		}
+	
+		//Step4: Pagination Implementation
+		PageInfo<Uspf> info = new PageInfo<>(list);
+		EasyUIDataGridResult result = new EasyUIDataGridResult();
+		result.setTotal((int) info.getTotal());
+		result.setRows(info.getList());
 
+		/*
 		List<Uspf> uspflist = new ArrayList<Uspf>();
-
-		SolrDocumentList searchList = searchservice.searchSolrDocumentList(map);
+		SolrDocumentList searchList = searchservice.generalPojoSearch(map, className);
 
 		for (SolrDocument solrDocument : searchList) {
 			Uspf item = new Uspf();
@@ -221,14 +263,7 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 
 			uspflist.add(item);
 		}
-		EasyUIDataGridResult result = new EasyUIDataGridResult();
-
-		if (uspflist.size() > 0) {
-			PageInfo<Uspf> info = new PageInfo<>(uspflist);
-			result.setTotal((int) info.getTotal());
-			result.setRows(info.getList());
-			jedisClient.addToList(LIST, SEARCHLIST, uspflist);
-		}
+		*/
 
 		return result;
 	}
@@ -241,7 +276,7 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 
 		List<Usgp> usgpList = new ArrayList<Usgp>();
 
-		SolrDocumentList searchList = searchservice.searchSolrDocumentList(map);
+		SolrDocumentList searchList = searchservice.generalPojoSearch(map, null);
 		EasyUIDataGridResult result = new EasyUIDataGridResult();
 
 		if (searchList == null)
@@ -275,7 +310,7 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 
 	@Override
 	public CommonResult matchUsgp(List<Map<String, String>> list) {
-
+		super.daoDeleteAllUspfGp();
 		for (Map<String, String> m : list) {
 			Usgp usgp = new Usgp();
 			UsgpExample example = new UsgpExample();
@@ -283,16 +318,15 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 			int usgpId = 0;
 			for (Map.Entry<String, String> entry : m.entrySet()) {
 
-				if (entry.getKey().trim().equalsIgnoreCase("nub")) {
+				if (entry.getKey().trim().equalsIgnoreCase("groupname")) {
 					criteria.andUsgpnameEqualTo(entry.getValue());
 					usgpId = usgpmapper.selectByExample(example).get(0).getUsgpid();
 				} else {
 					if (usgp != null && !entry.getValue().trim().isEmpty()) {
-						System.out.println(entry.getKey() + " -->" + entry.getValue());
 						UspfGp ug = new UspfGp();
 						ug.setUsgpid(usgpId);
 						ug.setUserid(entry.getValue());
-						uspfGpMapper.insert(ug);
+						super.daoCreateUspfgp(ug);
 					}
 				}
 			}
@@ -301,6 +335,47 @@ public class UspfServiceImpl extends StaticGeneralService implements UspfService
 		}
 
 		return CommonResult.ok();
+	}
+
+	@Override
+	public CommonResult updateUscr(Uscr uscr) {
+		String md5DigestAsHex = DigestUtils.md5DigestAsHex(uscr.getPassword().getBytes());
+		uscr.setPassword(md5DigestAsHex);
+		super.daoUpdateUscr(uscr);
+		return CommonResult.ok();
+	}
+
+	@Override
+	public CommonResult createUscr(Uscr uscr) {
+		List<Uspf> list=super.daoSelectUspfById(uscr.getUserid());
+		if(list.isEmpty()) {
+			return CommonResult.build(400, "no such user");
+		}
+		else if(!list.get(0).getStatus().equalsIgnoreCase("A")) {
+			return CommonResult.build(400, "user expired");
+		}
+		
+		String md5password = DigestUtils.md5DigestAsHex(uscr.getPassword().getBytes());
+		uscr.setPassword(md5password);
+		super.daoCreateUscr(uscr);
+		return CommonResult.ok();
+	}
+
+	@Override
+	public CommonResult deleteUscr(String userid) {
+		super.daoDeleteUscrById(userid);
+		return CommonResult.ok();
+	}
+
+	@Override
+	public EasyUIDataGridResult searchUscr(Uscr uscr) throws Exception {
+		List<Uscr> list = super.daoSearchUscr(uscr);
+		
+		PageInfo<Uscr> info = new PageInfo<>(list);
+		EasyUIDataGridResult result = new EasyUIDataGridResult();
+		result.setTotal((int) info.getTotal());
+		result.setRows(info.getList());
+		return result;
 	}
 
 }

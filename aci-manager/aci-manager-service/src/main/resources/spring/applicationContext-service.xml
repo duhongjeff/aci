@@ -10,6 +10,15 @@
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 
 	<context:component-scan base-package="com.sg.cp.service"></context:component-scan>
+	
+	<!-- -->
+	<bean id="searchServiceImpl"
+        class="com.sg.cp.service.impl.SearchServiceImpl" scope="singleton">
+        <constructor-arg name="isSolr"
+            value="false" />
+    </bean>
+     
+    
 	<!-- 使用dubbo发布服务 -->
 	<!-- 提供方应用信息，用于计算依赖关系 -->
 	<dubbo:application name="aci-manager" />
@@ -22,4 +31,5 @@
 	<dubbo:service interface="com.sg.cp.service.funcservice.FuncService" ref="funcServiceImpl" />
 	<dubbo:service interface="com.sg.cp.service.sso.UserRegisterService" ref="userRegisterServiceImpl" timeout="300000"/>
 	<dubbo:service interface="com.sg.cp.service.sso.UserLoginService" ref="userLoginServiceImpl" timeout="300000"/>
+	<dubbo:service interface="com.sg.cp.service.setting.SettingService" ref="settingServiceImpl" timeout="300000"/>
 </beans>

@@ -1,9 +1,11 @@
-com\sg\cp\controller\UspfController.class
 com\sg\cp\controller\HtmlGenController.class
-com\sg\cp\listener\GenHtmMessageListener.class
 com\sg\cp\controller\sso\UserLoginController.class
-com\sg\cp\controller\sso\UserRegisterController.class
+com\sg\cp\interceptor\LoginInterceptor.class
 com\sg\cp\controller\FuncController.class
-com\sg\cp\controller\display\UspfDisplayController.class
 com\sg\cp\controller\PageController.class
 com\sg\cp\controller\SettingController.class
+com\sg\cp\controller\dropdownlist\DropdownlistController.class
+com\sg\cp\controller\UspfController.class
+com\sg\cp\listener\GenHtmMessageListener.class
+com\sg\cp\controller\sso\UserRegisterController.class
+com\sg\cp\controller\display\UspfDisplayController.class

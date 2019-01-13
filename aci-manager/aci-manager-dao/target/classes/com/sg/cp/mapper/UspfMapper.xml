@@ -407,9 +407,20 @@
 		WHERE u.`status`= #{status,jdbcType=VARCHAR}
 	</select>
 	<select id="selectuspfanduscr" resultMap="BaseResultMap">
-		SELECT u.*,up.usgpname FROM uspf u LEFT JOIN uscr ur ON u.userid = ur.userid
-		WHERE ur.`status` = #{status,jdbcType=VARCHAR} 
+		SELECT u.*,ur.* FROM uspf u LEFT JOIN uscr ur ON u.userid = ur.userid
+		WHERE u.`status` = #{status,jdbcType=VARCHAR} 
 		AND 
 		ur.userid = #{userid,jdbcType=VARCHAR}
 	</select>
+	<select id="selectByUspf" resultMap="BaseResultMap">
+		SELECT * from uspf
+		<where>
+        	<if test="record.userid != null">
+        		and userid = #{record.userid}
+        	</if>
+        	<if test="record.realname != null">
+        		and userid = #{record.realname}
+        	</if>
+	  </where>
+   </select>
 </mapper>

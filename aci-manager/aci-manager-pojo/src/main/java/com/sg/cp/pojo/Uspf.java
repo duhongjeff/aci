@@ -414,7 +414,19 @@ public class Uspf extends CommonPojo {
         this.remark = remark == null ? null : remark.trim();
     }
     
-    /*--------Self Defined----------*/
+    
+    
+    @Override
+	public String toString() {
+		return "Uspf [userid=" + userid + ", reporterid=" + reporterid + ", realname=" + realname + ", gender=" + gender
+				+ ", email=" + email + ", telno=" + telno + ", wechatno=" + wechatno + ", addr=" + addr + ", dob=" + dob
+				+ ", expirydate=" + expirydate + ", designation=" + designation + ", terminationdate=" + terminationdate
+				+ ", remark=" + remark + ", usgps=" + usgps + ", uscr=" + uscr + ", usgpDesc=" + usgpDesc + "]";
+	}
+
+
+
+	/*--------Self Defined----------*/
     private List<Usgp> usgps; 
     
    	public List<Usgp> getUsgps() {
@@ -425,6 +437,8 @@ public class Uspf extends CommonPojo {
    		this.usgps = usgps;
    	}
    	
+   	private Uscr uscr;
+   	
    	public Uscr getUscr() {
 		return uscr;
 	}
@@ -433,5 +447,15 @@ public class Uspf extends CommonPojo {
 		this.uscr = uscr;
 	}
 
-	private Uscr uscr;
+	private String usgpDesc;
+	
+	public String getUsgpDesc() {
+		return usgpDesc;
+	}
+
+	public void setUsgpDesc(String usgpDesc) {
+		this.usgpDesc = usgpDesc;
+	}
+
+	
 }

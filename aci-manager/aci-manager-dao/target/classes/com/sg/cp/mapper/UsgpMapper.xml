@@ -16,6 +16,12 @@
     <result column="lupdate" property="lupdate" jdbcType="TIMESTAMP" />
     <result column="creby" property="creby" jdbcType="VARCHAR" />
     <result column="lupby" property="lupby" jdbcType="VARCHAR" />
+    
+        <!-- 多对多关联映射：collection -->
+		<collection property="uspfs" ofType="com.sg.cp.pojo.Uspf">
+			<id property="userid" column="userid" />
+			<result property="realname" column="realname" />
+		</collection>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <!--
@@ -277,7 +283,7 @@
   </update>
   <select id="selectusgpandmatchingusers" resultMap="BaseResultMap">
 	SELECT u.usgpname,us.userid  FROM usgp u 
-	LEFT JOIN uspf_gp ug ON u.usgpid = ug.usgpid 
+    LEFT JOIN uspf_gp ug ON u.usgpid = ug.usgpid 
 	LEFT JOIN uspf us  ON ug.userid = us.userid 
 	ORDER BY u.usgpid;
 	</select>

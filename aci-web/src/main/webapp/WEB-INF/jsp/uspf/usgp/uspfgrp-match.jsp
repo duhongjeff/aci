@@ -9,15 +9,12 @@
 	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/demo/demo.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
 	<script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
-	<script>
-		
-	</script>
 </head>
 <body>
-	<h2>Creating a School Timetable</h2>
+	<h2>Uspf Usgp Match Table</h2>
 	<div class="demo-info" style="margin-bottom:10px">
 		<div class="demo-tip icon-tip">&nbsp;</div>
-		<div>Click and drag a class to timetable.</div>
+		<div>Click and drag a class to table.</div>
 	</div>
 
 	<div style="width:700px;">
@@ -72,7 +69,7 @@
             var row = $("<tr></tr>");
             $.each(item, function (name, value) {
             	var td = $("<td></td>").html(value);
-            	if(name=="nub")
+            	if(name=="groupname")
             	{
             		row.prepend(td);
             	}
@@ -81,17 +78,24 @@
             		row.append(td);
             	}
                 
-                
             });
             tab1.append(row);
         });//为表单填充对应JSon值
+       
         $("#tab").find("tr:not(:first)").each(function () {
-            $(this).children().eq("0").addClass("nub");
-            $(this).children().eq("1").addClass("1 drop droppable");
-            $(this).children().eq("2").addClass("2 drop droppable");
-            $(this).children().eq("3").addClass("3 drop droppable");
-            $(this).children().eq("4").addClass("4 drop droppable");
-            $(this).children().eq("5").addClass("5 drop droppable");
+        	var rowNumber=0;
+        	$(this).children().each(function () {
+        		
+        		if(rowNumber==0)
+        		{
+        			$(this).addClass("groupname");
+        		}
+        		else
+        		{
+        			 $(this).addClass(rowNumber.toString()+" drop droppable");
+        		}
+        		rowNumber=rowNumber+1;
+        	}); 
         });//为每个对应的列添加class名
         function load_js(){
 			$('.left .item').draggable({

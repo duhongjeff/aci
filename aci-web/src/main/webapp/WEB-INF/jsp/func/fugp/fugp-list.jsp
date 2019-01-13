@@ -6,11 +6,10 @@
         	<th data-options="field:'ck',checkbox:true">勾选</th>
         	<th data-options="field:'fuctiongpid',width:60">功能组ID</th>
             <th data-options="field:'functiongpname',width:100">功能组名</th>
-            <th data-options="field:'active',width:100">状态</th>
-            <th data-options="field:'readonly',width:100">只读</th>
-            <th data-options="field:'desc',width:100">描述</th>
-            <th data-options="field:'credate',width:130,align:'center'">创建日期</th>
-            <th data-options="field:'lupdate',width:130,align:'center'">更新日期</th>
+            <th data-options="field:'status',width:100">状态</th>
+            <th data-options="field:'remark',width:100">描述</th>
+            <th data-options="field:'credate',width:130,align:'center',formatter:TAOTAO.formatDateTimeToLong">创建日期</th>
+            <th data-options="field:'lupdate',width:130,align:'center',formatter:TAOTAO.formatDateTimeToLong">更新日期</th>
         </tr>
     </thead>
 </table>
@@ -78,7 +77,7 @@
         		$.messager.alert('提示','未选中商品!');
         		return ;
         	}
-        	$.messager.confirm('确认','确定删除ID为 '+ids+' 的用户吗？',function(r){
+        	$.messager.confirm('确认','确定删除ID为 '+ids+' 的条目吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
                 	$.post("/fugp/delete/"+ids, function(data){

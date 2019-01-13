@@ -42,7 +42,7 @@ public class SearchDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public SolrDocumentList search(Map<String,String> targetMap,AndOrNull aon) {
+	public SolrDocumentList solrSearch(Map<String,String> targetMap,AndOrNull aon) {
 		
 		SolrQuery query = new SolrQuery();
 		

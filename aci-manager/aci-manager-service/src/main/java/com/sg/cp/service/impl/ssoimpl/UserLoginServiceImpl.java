@@ -62,6 +62,12 @@ public class UserLoginServiceImpl implements UserLoginService {
 		//7.把token设置cookie当中    在表现层设置
 		return CommonResult.ok(token);
 	}
+	
+	@Override
+	public CommonResult logout(String cookieValue) {
+		client.del(USER_INFO+":"+cookieValue);
+		return CommonResult.ok(cookieValue);
+	}
 
 	@Override
 	public CommonResult getUserByToken(String token) {
@@ -79,5 +85,7 @@ public class UserLoginServiceImpl implements UserLoginService {
 		//4.如果查询不到 返回400
 		return CommonResult.build(400, "用户已过期");
 	}
+
+
 
 }

@@ -11,7 +11,7 @@
 		<table cellpadding="5">
 			<tr>
 				<td>功能组ID</td>
-				<td><input class="easyui-textbox" type="text" name="fuctiongpid"
+				<td><input class="easyui-numberbox" type="text" name="fuctiongpid"
 					data-options="required:true" /></td>
 			</tr>
 			<tr>
@@ -21,17 +21,12 @@
 			</tr>
 			<tr>
 				<td>状态</td>
-				<td><input class="easyui-textbox" type="text" name="active"
-					data-options="required:true" /></td>
-			</tr>
-			<tr>
-				<td>只读</td>
-				<td><input class="easyui-textbox" type="text" name="readonly"
+				<td><input class="easyui-textbox" type="text" name="status" id="statusid"
 					data-options="required:true" /></td>
 			</tr>
 			<tr>
 				<td>简介描述</td>
-				<td><input class="easyui-textbox" type="text" name="desc"
+				<td><input class="easyui-textbox" type="text" name="remark"
 					data-options="required:true" /></td>
 			</tr>
 
@@ -45,6 +40,12 @@
 	</div>
 </div>
 <script type="text/javascript">
+$('#statusid').combobox({
+	method : 'GET',
+	url : '/json/status.json',
+	valueField : 'text',
+	textField : 'description'
+});
 	var itemAddEditor;
 	//页面初始化完毕后执行此方法
 	$(function() {

@@ -43,26 +43,34 @@ public class UspfDisplayController {
 		List<Map> array = new LinkedList<Map>();
 		
 		Iterator<Usgp> usgpIterator = list.iterator();
-		Integer noCounter=1;
+		
 		while(usgpIterator.hasNext())
 		{
 			Map map= new LinkedHashMap();
 			
 			Usgp currUsgp = usgpIterator.next();
-			map.put("nub",currUsgp.getUsgpname());
-			for(Uspf u : currUsgp.getUspfs())
-			{
-				map.put(noCounter, u.getUserid());
-				noCounter++;
-			}
+			map.put("groupname",currUsgp.getUsgpname());
 			
-			for(int i=noCounter;i<5;i++)
+			int maxExpand=5;
+			Integer noCounter=1;
+			List<Uspf> uspfList=currUsgp.getUspfs();
+			if(uspfList!=null && uspfList.size()>0)
 			{
-				map.put(noCounter, "    ");
-				noCounter++;
+				maxExpand=uspfList.size()+5;
+				for(Uspf u : currUsgp.getUspfs())
+				{
+					map.put(noCounter, u.getUserid());
+					noCounter++;
+				}
+				expandCells(noCounter,maxExpand,map);
+
 			}
+			else
+			{
+				expandCells(noCounter,maxExpand,map);
+			}
+
 			array.add(map);
-			noCounter=1;
 		}
 		
 		JSONArray json = new JSONArray(array);
@@ -70,6 +78,14 @@ public class UspfDisplayController {
 	    
 	    
 		return json.toString();
+	}
+	
+	public void expandCells(int noCounter,int maxExpand,Map map) {
+		for(int i=noCounter;i<maxExpand;i++)
+		{
+			map.put(noCounter, " ");
+			noCounter++;
+		}
 	}
 
 @InitBinder  

@@ -17,42 +17,47 @@
 			</tr>
 			<tr>
 				<td>汇报者</td>
-				<td><input class="easyui-textbox" type="text" name="reporterid"
+				<td><input id="leaderid" class="easyui-textbox" type="text" name="reporterid"
 					data-options="required:true" /></td>
 			</tr>
 			<tr>
 				<td>性别</td>
-				<td><input class="easyui-textbox" type="text" name="gender"
+				<td><input id="genderid" class="easyui-textbox" type="text" name="gender"
 					data-options="required:true" /></td>
 			</tr>
 			<tr>
 				<td>邮箱</td>
 				<td><input class="easyui-textbox" type="text" name="email"
-					data-options="required:true" /></td>
+					data-options="required:true,validType:'email'" /></td>
 			</tr>
 			<tr>
 				<td>联系方式</td>
 				<td><input class="easyui-textbox" type="text" name="telno"
 					data-options="required:true" /></td>
 			</tr>
+		  <tr>
+				<td>联系地址</td>
+				<td><input class="easyui-textbox" type="text" name="addr"
+					data-options="required:true" /></td>
+			</tr>
 			<tr>
 				<td>生日</td>
-				<td><input id="dobid" class="easyui-datebox"  type="text" name="dob"
-					/></td>
+				<td><input class="easyui-datebox" type="text" name="dob"
+					 /></td>
 			</tr>
 			<tr>
 				<td>有效期</td>
-				<td><input id="expirydateid" class="easyui-datebox" 
-					name="expirydate" /></td>
+				<td><input class="easyui-datebox" type="text" name="expirydate"
+					 /></td>
 			</tr>
 			<tr>
 				<td>职位</td>
-				<td><input class="easyui-textbox" type="text" name="designation"
+				<td><input id="designationid" class="easyui-textbox" type="text" name="designation"
 					data-options="required:true" /></td>
 			</tr>
 			<tr>
 				<td>状态</td>
-				<td><input class="easyui-textbox" type="text" name="status"
+				<td><input id="statusid" class="easyui-textbox" type="text" name="status"
 					data-options="required:true" /></td>
 			</tr>
 		</table>
@@ -64,7 +69,34 @@
 	</div>
 </div>
 <script type="text/javascript">
-
+	
+	$('#statusid').combobox({
+		method : 'GET',
+		url : '/json/status.json',
+		valueField : 'text',
+		textField : 'description'
+	});
+	
+	$('#designationid').combobox({
+		method : 'GET',
+		url : '/json/designation.json',
+		valueField : 'text',
+		textField : 'description'
+	});
+	
+	$('#leaderid').combobox({
+		method : 'GET',
+		url : '/dropdownlist/usgp/listleader',
+		valueField : 'userid',
+		textField : 'userid'
+	});
+	
+	$('#genderid').combobox({
+		method : 'GET',
+		url : '/json/gender.json',
+		valueField : 'id',
+		textField : 'description'
+	});
 
 	var itemAddEditor ;
 	//页面初始化完毕后执行此方法

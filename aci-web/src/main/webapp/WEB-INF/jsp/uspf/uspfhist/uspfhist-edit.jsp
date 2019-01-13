@@ -21,7 +21,7 @@
 			</tr>
 			<tr>
 				<td>状态</td>
-				<td><input class="easyui-textbox" type="text" name="status"
+				<td><input id="statusid" class="easyui-textbox" type="text" name="status"
 					data-options="required:true" /></td>
 			</tr>
 		</table>
@@ -30,9 +30,16 @@
 	<div style="padding: 5px">
 		<a href="javascript:void(0)" class="easyui-linkbutton"
 			onclick="submitForm()">提交</a>
+			 <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>
 	</div>
 </div>
 <script type="text/javascript">
+$('#statusid').combobox({
+	method : 'GET',
+	url : '/json/status.json',
+	valueField : 'text',
+	textField : 'description'
+});
 	var itemEditEditor;
 	$(function() {
 		//实例化编辑器
@@ -49,10 +56,15 @@
 				data) {
 			if (data.status == 200) {
 				$.messager.alert('提示', '修改用户信息成功!', 'info', function() {
-					$("#itemEditWindow").window('close');
+					$("#itemHistEditWindow").window('close');
 					$("#uspfHistList").datagrid("reload");
 				});
 			}
 		});
+	}
+	
+	function clearForm(){
+		$('#itemHistEditForm').form('reset');
+		itemAddEditor.html('');
 	}
 </script>

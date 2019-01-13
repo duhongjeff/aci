@@ -21,12 +21,12 @@
 			</tr>
 			<tr>
 				<td>简介描述</td>
-				<td><input class="easyui-textbox" type="text" name="desc"
+				<td><input class="easyui-textbox" type="text" name="remark"
 					data-options="required:true" /></td>
 			</tr>
 			<tr>
 				<td>状态</td>
-				<td><input class="easyui-textbox" type="text" name="active"
+				<td><input class="easyui-textbox" type="text" name="status" id="statusid"
 					data-options="required:true" /></td>
 			</tr>
 		</table>
@@ -38,6 +38,13 @@
 	</div>
 </div>
 <script type="text/javascript">
+$('#statusid').combobox({
+	method : 'GET',
+	url : '/json/status.json',
+	valueField : 'text',
+	textField : 'description'
+});
+
 	var itemEditEditor;
 	$(function() {
 		//实例化编辑器
@@ -53,7 +60,7 @@
 		$.post("/func/update", $("#itemeEditForm").serialize(), function(
 				data) {
 			if (data.status == 200) {
-				$.messager.alert('提示', '修改用户信息成功!', 'info', function() {
+				$.messager.alert('提示', '修改信息成功!', 'info', function() {
 					$("#itemEditWindow").window('close');
 					$("#funcList").datagrid("reload");
 				});

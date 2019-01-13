@@ -1,26 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<table class="easyui-datagrid" id="uspfList" title="基本用户列表" 
-       data-options="singleSelect:false,collapsible:true,pagination:true,url:'/uspf/list',method:'get',pageSize:30,toolbar:toolbar">
-    <thead>
-        <tr>
-        	<th data-options="field:'ck',checkbox:true">勾选</th>
-        	<th data-options="field:'userid',width:60">用户ID</th>
-            <th data-options="field:'realname',width:100">姓名</th>
-            <th data-options="field:'usergroupdesc',width:100">所在用户组</th>
-            <th data-options="field:'reporterid',width:100">汇报者</th>
-            <th data-options="field:'gender',width:100">性别</th>
-            <th data-options="field:'email',width:100">邮箱</th>
-            <th data-options="field:'telno',width:100">联系方式</th>
-            <th data-options="field:'addr',width:200">联系方式</th>
-            <th data-options="field:'dob',width:100">生日</th>  
-            <th data-options="field:'expirydate',width:100">有效期</th>
-            <th data-options="field:'designation',width:100">职位</th>
-            <th data-options="field:'status',width:100">状态</th>
-			<th data-options="field:'remark',width:100">评论</th>
-            <th data-options="field:'credate',width:130,align:'center'">创建日期</th>
-            <th data-options="field:'lupdate',width:130,align:'center'">更新日期</th>
-        </tr>
-    </thead>
+<table id="uspfList">
 </table>
 <div id="itemEditWindow" class="easyui-window" title="编辑用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/uspf/uspf/uspf-edit'" style="width:80%;height:80%;padding:10px;">
 </div>
@@ -30,17 +9,7 @@
 </div>
 <script>
 
-    function getSelectionsIds(){
-    	var uspfList = $("#uspfList");
-    	var sels = uspfList.datagrid("getSelections");
-    	var ids = [];
-    	for(var i in sels){
-    		ids.push(sels[i].userid);
-    	}
-    	ids = ids.join(",");
-    	return ids;
-    }
-    
+$(document).ready(function(){
     var toolbar = [{
         text:'搜索',
         iconCls:'icon-search',
@@ -102,4 +71,44 @@
         	});
         }
     }];
+    
+	$('#uspfList').datagrid({
+	    url:'/uspf/list',
+	    method:'get',
+	    title:'基本用户列表',
+	    singleSelect:false,collapsible:true,pagination:true,pageSize:30,
+	    toolbar:toolbar,
+	    columns:[[
+	        {field:'ck',checkbox:true,title:'勾选',width:100},
+	        {field:'userid',title:'用户ID',width:100},
+	        {field:'realname',title:'姓名',width:100},
+	        {field:'usgpDesc',title:'所在用户组',width:100},
+	        {field:'reporterid',title:'汇报者',width:100},
+	        {field:'gender',title:'性别',width:100},
+	        {field:'email',title:'邮箱',width:100},
+	        {field:'telno',title:'联系方式',width:100},
+	        {field:'addr',title:'联系地址',width:100},
+	        {field:'dob',formatter:TAOTAO.formatDateTimeToLong,title:'生日',width:100},
+	        {field:'expirydate',formatter:TAOTAO.formatDateTimeToLong,title:'expirydate',width:100},
+	        {field:'designation',title:'职位',width:100},
+	        {field:'status',title:'状态',width:100},
+	        {field:'remark',title:'评论',width:100},
+	        {field:'credate',formatter:TAOTAO.formatDateTimeToLong,title:'创建日期',width:100},
+	        {field:'lupdate',formatter:TAOTAO.formatDateTimeToLong,title:'更新日期',width:100}
+	    ]]
+	});
+	});
+
+    function getSelectionsIds(){
+    	var uspfList = $("#uspfList");
+    	var sels = uspfList.datagrid("getSelections");
+    	var ids = [];
+    	for(var i in sels){
+    		ids.push(sels[i].userid);
+    	}
+    	ids = ids.join(",");
+    	return ids;
+    }
+    
+
 </script>

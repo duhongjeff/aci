@@ -2,6 +2,7 @@ com\sg\cp\service\TestService.class
 com\sg\cp\service\funcservice\FuncService.class
 com\sg\cp\service\JedisClient.class
 com\sg\cp\service\sso\UserRegisterService.class
+com\sg\cp\service\setting\SettingService.class
 com\sg\cp\service\temporaryservice\TmpSolutionService.class
 com\sg\cp\service\SearchService.class
 com\sg\cp\service\sso\UserLoginService.class

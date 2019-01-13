@@ -5,6 +5,8 @@ D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\i
 D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\TmpSolutionImpl.java
 D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\JedisClientPool.java
 D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\staticimpl\StaticGeneralService.java
+D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\aop\AOPTest.java
+D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\settingimpl\SettingServiceImpl.java
 D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\ssoimpl\UserLoginServiceImpl.java
 D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\staticimpl\uspfimpl\UspfServiceImpl.java
 D:\cpworkspace\aci-manager\aci-manager-service\src\main\java\com\sg\cp\service\impl\staticimpl\funcimpl\FuncServiceImpl.java

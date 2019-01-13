@@ -13,6 +13,7 @@ import com.sg.cp.pojo.Uspf;
 import com.sg.cp.pojo.UspfExample;
 import com.sg.cp.service.sso.UserRegisterService;
 
+import commontools.CommonEnums.Status;
 import easyuitools.CommonResult;
 
 @Service
@@ -94,6 +95,8 @@ public class UserRegisterServiceImpl implements UserRegisterService {
 		String md5password = DigestUtils.md5DigestAsHex(uspf.getUscr().getPassword().getBytes());
 		//5.插入数据
 		Uscr uscr = new Uscr();
+		uspf.setStatus(Status.A.name());
+		uscr.setStatus(Status.A.name());
 		usermapper.insertSelective(uspf);
 		
 		uscr.setUserid(uspf.getUserid());

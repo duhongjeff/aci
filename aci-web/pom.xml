@@ -1,15 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.sg.cp</groupId>
-    <artifactId>aci-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>aci-web</artifactId>
-  <packaging>war</packaging>
-  <name>aci-web</name>
-  <description>Access Interface</description>
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.sg.cp</groupId>
+		<artifactId>aci-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>aci-web</artifactId>
+	<packaging>war</packaging>
+	<name>aci-web</name>
+	<description>Access Interface</description>
+	<dependencies>
 		<!-- manager-interface接口 -->
 		<dependency>
 			<groupId>com.sg.cp</groupId>
@@ -70,12 +72,12 @@
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 		</dependency>
-		
+
 		<dependency>
-  		  <groupId>com.alibaba</groupId>
-  		  <artifactId>dubbo</artifactId>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.zookeeper</groupId>
 			<artifactId>zookeeper</artifactId>
@@ -86,17 +88,28 @@
 		</dependency>
 		<dependency>
 			<groupId>org.freemarker</groupId>
-    		<artifactId>freemarker</artifactId>
+			<artifactId>freemarker</artifactId>
 		</dependency>
 		<dependency>
-		<groupId>org.apache.activemq</groupId>
-    		<artifactId>activemq-all</artifactId>	
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-all</artifactId>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 		</dependency>
-		
+		<!-- https://mvnrepository.com/artifact/org.javassist/javassist -->
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+		</dependency>
+
+
 	</dependencies>
 	<build>
 		<plugins>

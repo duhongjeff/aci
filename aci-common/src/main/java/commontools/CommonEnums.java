@@ -3,7 +3,7 @@ package commontools;
 public class CommonEnums {
 
 	   public enum DateFormat{
-	      yyyyMMdd;
+	      yyyyMMdd; 
 	   }
 	   
 	   public enum Status{

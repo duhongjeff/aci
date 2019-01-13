@@ -93,7 +93,12 @@ public class Usgp extends CommonPojo {
 	public void setLeaderid(String leaderid) {
 		this.leaderid = leaderid == null ? null : leaderid.trim();
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Usgp [usgpid=" + usgpid + ", usgpname=" + usgpname + ", leaderid=" + leaderid + ", uspfs=" + uspfs+ "]";
+	}
+	
 	/* Below self defined */
 	private List<Uspf> uspfs;
 

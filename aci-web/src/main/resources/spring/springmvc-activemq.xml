@@ -11,19 +11,21 @@
 	<bean id="targetConnection" class="org.apache.activemq.ActiveMQConnectionFactory">
 		<property name="brokerURL" value="tcp://192.168.1.110:61616"></property>
 	</bean>
-	<!-- 通用的connectionfacotry 指定真正使用的连接工厂 -->
+	<!-- 通用的connectionfacotry 指定真正使用的连接工厂 
 	<bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
 		<property name="targetConnectionFactory" ref="targetConnection"></property>
 	</bean>
 	<bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg name="name" value="uspf-topic"></constructor-arg>
 	</bean>
-	<!-- messagelistener的初始化 -->
-	<bean id="GenHtmMessageListener" class="com.sg.cp.listener.GenHtmMessageListener"></bean>
-	<!-- 设置默认的监听容器 -->
+	-->
+	<!-- messagelistener的初始化
+	<bean id="GenHtmMessageListener" class="com.sg.cp.listener.GenHtmMessageListener"></bean> -->
+	<!-- 设置默认的监听容器 
 	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory"></property>
 		<property name="destination" ref="topicDestination"></property>
 		<property name="messageListener" ref="GenHtmMessageListener"></property>
 	</bean>
+	-->
 </beans>

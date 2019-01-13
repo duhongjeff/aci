@@ -10,14 +10,14 @@
             <th data-options="field:'terminationdate',width:100">关闭日期</th>
             <th data-options="field:'status',width:100">状态</th>
 			<th data-options="field:'remark',width:100">评论</th>
-            <th data-options="field:'credate',width:130,align:'center'">创建日期</th>
-            <th data-options="field:'lupdate',width:130,align:'center'">更新日期</th>
+            <th data-options="field:'credate',formatter:TAOTAO.formatDateTimeToLong,width:130,align:'center'">创建日期</th>
+            <th data-options="field:'lupdate',formatter:TAOTAO.formatDateTimeToLong,width:130,align:'center'">更新日期</th>
         </tr>
     </thead>
 </table>
 <div id="itemSearchWindow" class="easyui-window" title="搜索用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/uspfhist-edit'" style="width:80%;height:80%;padding:10px;">
 </div>
-<div id="itemEditWindow" class="easyui-window" title="恢复用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/uspfhist-edit'" style="width:80%;height:80%;padding:10px;">
+<div id="itemHistEditWindow" class="easyui-window" title="恢复用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/uspf/uspfhist/uspfhist-edit'" style="width:80%;height:80%;padding:10px;">
 </div>
 <script>
 
@@ -34,7 +34,7 @@
     
     var toolbar = [{
         text:'搜索',
-        iconCls:'icon-edit',
+        iconCls:'icon-search',
         handler:function(){
         	var ids = getSelectionsIds();
         	if(ids.length == 0){
@@ -61,7 +61,7 @@
     },
     {
         text:'恢复',
-        iconCls:'icon-edit',
+        iconCls:'icon-redo',
         handler:function(){
         	var ids = getSelectionsIds();
         	if(ids.length == 0){
@@ -73,14 +73,14 @@
         		return ;
         	}
         	
-        	$("#itemEditWindow").window({
+        	$("#itemHistEditWindow").window({
 				width:'400',
 			    height:"400",
         		onLoad :function(){
         			//回显数据
         			var data = $("#uspfHistList").datagrid("getSelections")[0];
         			//data.priceView = TAOTAO.formatPrice(data.price);
-        			data.expirydate=TAOTAO.formatDateTime(data.expirydate);
+        			//data.expirydate=TAOTAO.formatDateTime(data.expirydate);
         			$("#itemHistEditForm").form("load",data);
         		}
         	}).window("open");

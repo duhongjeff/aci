@@ -47,7 +47,8 @@ var TT = TAOTAO = {
     	return now.format("yyyy-MM-dd hh:mm:ss");
 	},
 	formatDateTimeToLong : function(val){
-		alert(val);
+		if(val==null || val=='')
+			return null;
 		var now = new Date(val);
 		return now.format("yyyyMMdd");
 	},

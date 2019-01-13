@@ -1,6 +1,7 @@
 package com.sg.cp.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,7 +25,8 @@ public class PageController {
 	}
 	
 	@RequestMapping("/uspf/{type}/{target}")
-	public String displayUspfMain(@PathVariable String type,@PathVariable String target){
+	public String displayUspfMain(@PathVariable String type,@PathVariable String target,String redirect,Model model){
+		model.addAttribute("redirect", redirect);
 		return "uspf/"+type+"/"+target;
 	}
 	
@@ -44,7 +46,9 @@ public class PageController {
 	}
 	
 	@RequestMapping("/sso/{target}")
-	public String displaySSOMain(@PathVariable String target){
+	public String displaySSOMain(@PathVariable String target,String redirect,Model model){
+		System.out.println(redirect);
+		model.addAttribute("redirect", redirect);
 		return "sso/"+target;
 	}
 }

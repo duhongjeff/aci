@@ -12,7 +12,7 @@
 <form id="formlogin" method="post" onsubmit="return false;">
     <div class=" w1" id="entry">
         <div class="mc " id="bgDiv">
-            <div id="entry-bg" style="width: 511px; height: 455px; position: absolute; left: -44px; top: -44px; background: url(/images/544a11d3Na5a3d566.png) 0px 0px no-repeat;">
+            <div id="entry-bg" style="width: 511px; height: 455px; position: absolute; left: -44px; top: -44px; background: url(/images/rank-sh.png) 0px 0px no-repeat;">
 			</div>
             <div class="form ">
                 <div class="item fore1">
@@ -42,17 +42,21 @@
                     </div>
                 </div>
                 <div class="item login-btn2013">
-                    <input type="button" id="loginsubmit" value="登录" tabindex="8" />
+                    <input type="button" class="easyui-linkbutton" id="loginsubmit" value="登录" tabindex="8" />
                 </div>
             </div>
         </div>
         <div class="free-regist">
-            <span><a href="/page/register">免费注册&gt;&gt;</a></span>
+            <span><a href="http://localhost:8081/sso/register">注册&gt;&gt;</a></span>
         </div>
     </div>
 </form>
 <script type="text/javascript">
 	var redirectUrl = "${redirect}";
+	if (redirectUrl)
+	{
+		window.top.location.href = "http://localhost:8081/sso/login"; 
+	}
 	var LOGIN = {
 			checkInput:function() {
 				if ($("#loginname").val() == "") {
@@ -70,14 +74,12 @@
 			doLogin:function() {
 				$.post("/user/login", $("#formlogin").serialize(),function(data){
 					if (data.status == 200) {
-						/*
 						alert("登录成功！");
 						if (redirectUrl == "") {
-							location.href = "http://localhost:8082";
+							location.href = "http://localhost:8081";
 						} else {
 							location.href = redirectUrl;
 						}
-						*/
 					} else {
 						alert("登录失败，原因是：" + data.msg);
 						$("#loginname").select();

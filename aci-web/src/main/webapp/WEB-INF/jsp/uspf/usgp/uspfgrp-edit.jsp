@@ -21,7 +21,7 @@
 			</tr>
 			<tr>
 				<td>汇报者</td>
-				<td><input class="easyui-textbox" type="text" name="leaderid"
+				<td><input id="leaderid" class="easyui-textbox" type="text" name="leaderid"
 					data-options="required:true" /></td>
 			</tr>
 			<tr>
@@ -31,7 +31,7 @@
 			</tr>
 			<tr>
 				<td>状态</td>
-				<td><input class="easyui-textbox" type="text" name="status"
+				<td><input id="statusid" class="easyui-textbox" type="text" name="status"
 				 /></td>
 			</tr>
 		</table>
@@ -39,10 +39,25 @@
 	</form>
 	<div style="padding: 5px">
 		<a href="javascript:void(0)" class="easyui-linkbutton"
-			onclick="submitForm()">提交</a>
+			onclick="submitForm()">提交</a><a href="javascript:void(0)"
+			onclick="resetForm()" class="easyui-linkbutton" onclick="clearForm()">重置</a>
 	</div>
 </div>
 <script type="text/javascript">
+$('#statusid').combobox({
+	method : 'GET',
+	url : '/json/status.json',
+	valueField : 'text',
+	textField : 'text'
+});
+
+$('#leaderid').combobox({
+	method : 'GET',
+	url : '/dropdownlist/usgp/listleader',
+	valueField : 'userid',
+	textField : 'userid'
+});
+
 	var itemEditEditor;
 	$(function() {
 		//实例化编辑器
@@ -64,5 +79,10 @@
 				});
 			}
 		});
+	}
+	
+	function resetForm() {
+		$('#itemAddForm').form('reset');
+		itemAddEditor.html('');
 	}
 </script>

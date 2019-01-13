@@ -2,6 +2,7 @@ package com.sg.cp.service.uspfservice;
 import java.util.List;
 import java.util.Map;
 
+import com.sg.cp.pojo.Uscr;
 import com.sg.cp.pojo.Usgp;
 import com.sg.cp.pojo.Uspf;
 
@@ -12,12 +13,18 @@ import easyuitools.EasyUIDataGridResult;
 public interface UspfService {
 	public EasyUIDataGridResult getUspfList(Integer page,Integer rows, Status status);
 	public String[] getUspfDisplayList(Status status);
+	public List<Uspf> getUspfList(Status status);
+	
 	public CommonResult updateUspf(Uspf uspf);
 	public CommonResult createUspf(Uspf uspf);
 	public CommonResult deleteUspf(String userid);
-	public EasyUIDataGridResult searchUspf(Uspf uspf) throws Exception;
+	public EasyUIDataGridResult searchUspf(Map<String,String> map, String className) throws Exception;
 	
-	//
+	public CommonResult updateUscr(Uscr uscr);
+	public CommonResult createUscr(Uscr uscr);
+	public CommonResult deleteUscr(String userid);
+	public EasyUIDataGridResult searchUscr(Uscr uscr) throws Exception;
+	
 	public EasyUIDataGridResult getUspfGrpList(Integer page, Integer rows, Status status);
 	public CommonResult updateUsgp(Usgp usgp);
 	public CommonResult createUsgp(Usgp usgp);

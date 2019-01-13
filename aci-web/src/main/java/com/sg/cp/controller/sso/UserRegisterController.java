@@ -51,10 +51,6 @@ public class UserRegisterController {
 	@ResponseBody
 	public CommonResult register(Uspf user){
 		
-		System.out.println("USCR"+user.getUscr());
-		System.out.println("USCR"+user.getUscr().getPassword());
-		System.out.println("USPF"+user.toString());
-		
 		CommonResult result = registerservice.register(user);
 		return result;
 	}

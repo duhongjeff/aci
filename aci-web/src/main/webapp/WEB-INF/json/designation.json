@@ -1,0 +1,18 @@
+[{
+    "id":1,
+    "text":"GM",
+    "description":"General Manager",
+    "selected":true
+},{
+    "id":2,
+    "text":"OP",
+    "description":"Operation"
+},{
+    "id":3,
+    "text":"CT",
+    "description":"consultant"
+},{
+    "id":4,
+    "text":"FI",
+    "description":"Financial Officier"
+}]

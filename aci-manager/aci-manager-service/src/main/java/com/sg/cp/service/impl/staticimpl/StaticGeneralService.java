@@ -11,17 +11,23 @@ import org.springframework.stereotype.Service;
 
 import com.sg.cp.mapper.FugpMapper;
 import com.sg.cp.mapper.FuncMapper;
+import com.sg.cp.mapper.UscrMapper;
 import com.sg.cp.mapper.UsgpMapper;
+import com.sg.cp.mapper.UspfGpMapper;
 import com.sg.cp.mapper.UspfMapper;
 import com.sg.cp.pojo.Fugp;
 import com.sg.cp.pojo.FugpExample;
 import com.sg.cp.pojo.FugpExample.Criteria;
 import com.sg.cp.pojo.Func;
 import com.sg.cp.pojo.FuncExample;
+import com.sg.cp.pojo.Uscr;
+import com.sg.cp.pojo.UscrExample;
 import com.sg.cp.pojo.Usgp;
 import com.sg.cp.pojo.UsgpExample;
 import com.sg.cp.pojo.Uspf;
 import com.sg.cp.pojo.UspfExample;
+import com.sg.cp.pojo.UspfGp;
+import com.sg.cp.pojo.UspfGpExample;
 
 import commontools.CPDateUtils;
 import commontools.CommonEnums;
@@ -34,11 +40,15 @@ public class StaticGeneralService{
 	@Autowired
 	private UspfMapper uspfmapper;
 	@Autowired
+	private UscrMapper uscrmapper;
+	@Autowired
 	private UsgpMapper usgpmapper;
 	@Autowired
 	private FuncMapper funcMapper;
 	@Autowired
 	private FugpMapper fugpMapper;
+	@Autowired
+	private UspfGpMapper uspfGpMapper;
 
 	@Value("${USERLIST_KEY}") private String USERLISTKEY;
 	@Value("${USERGRPLIST_KEY}") private String USERGRPLIST_KEY;
@@ -50,8 +60,16 @@ public class StaticGeneralService{
 	
 	
 	/*------------------------------------Uspf----------------------------------------------*/
+	//Search
+	protected List<Uspf> daoSearchUspf(Uspf uspf) {
+		String msg = null;
+		List<Uspf> list=uspfmapper.selectByUspf(uspf);
+		return list;
+	}
+	
 	//Create
 	protected String daoCreateUspf(Uspf uspf) {
+		System.out.println("aop step 3 "+uspf.toString());
 		String msg = null;
 		uspfmapper.insertSelective(uspf);
 		return msg;
@@ -80,6 +98,14 @@ public class StaticGeneralService{
 		return uspfmapper.selectuspfandusgp(status.name());
 	}
 	
+	//Select
+	protected List<Uspf> daoSelectUspfById(String uspfid) {
+		UspfExample example = new UspfExample();
+		com.sg.cp.pojo.UspfExample.Criteria usfpCriteria = example.createCriteria();
+		usfpCriteria.andUseridEqualTo(uspfid);
+		return uspfmapper.selectByExample(example);
+	}
+	
 	//Update
 	protected String daoUpdateUspf(Uspf uspf) {
 		
@@ -91,6 +117,53 @@ public class StaticGeneralService{
 		return msg;
 	}
 	
+	
+	/*------------------------------------Uscr----------------------------------------------*/
+	//Search
+	protected List<Uscr> daoSearchUscr(Uscr uscr) {
+		UscrExample example = new UscrExample();
+		com.sg.cp.pojo.UscrExample.Criteria uscrCriteria = example.createCriteria();
+		uscrCriteria.andUseridEqualTo(uscr.getUserid());
+		List<Uscr> list=uscrmapper.selectByExample(example);
+		return list;
+	}
+	
+	//Create
+	protected String daoCreateUscr(Uscr uscr) {
+		String msg = null;
+		uscrmapper.insertSelective(uscr);
+		return msg;
+	}
+	
+	//Delete
+	protected String daoDeleteUscrById(String uspfid) {
+		String msg = null;
+		UscrExample example = new UscrExample();
+		com.sg.cp.pojo.UscrExample.Criteria criteria = example.createCriteria();
+		criteria.andUseridEqualTo(uspfid);
+		uscrmapper.deleteByExample(example);
+		return msg;
+	}
+	
+	
+	//List
+	protected List<Uscr> daoGetUscrList(Status status){
+		UscrExample example = new UscrExample();
+		com.sg.cp.pojo.UscrExample.Criteria uscrCriteria = example.createCriteria();
+		uscrCriteria.andStatusEqualTo(status.name());
+		return uscrmapper.selectByExample(example);
+	}
+	
+	//Update
+	protected String daoUpdateUscr(Uscr uscr) {
+		
+		String msg = null;
+		UscrExample example = new UscrExample();
+		com.sg.cp.pojo.UscrExample.Criteria criteria = example.createCriteria();
+		criteria.andUseridEqualTo(uscr.getUserid());
+		uscrmapper.updateByExampleSelective(uscr, example);
+		return msg;
+	}
 	/*------------------------------------Usgp ----------------------------------------------*/
 	//Create
 	protected String daoCreateUsgp(Usgp usgp) {
@@ -124,6 +197,23 @@ public class StaticGeneralService{
 		criteria.andUsgpidEqualTo(usgp.getUsgpid());
 		usgpmapper.updateByExampleSelective(usgp, example);
 		return null;
+	}
+	
+	
+	//------------------USGP_USPF---------------------------
+	//Delete All
+	//Delete
+	protected String daoDeleteAllUspfGp() {
+		UspfGpExample example = new UspfGpExample();
+		com.sg.cp.pojo.UspfGpExample.Criteria criteria = example.createCriteria();
+		uspfGpMapper.deleteByExample(example);
+		return null;
+	}
+	//Create
+	protected String daoCreateUspfgp(UspfGp uspfGp) {
+		String msg = null;
+		uspfGpMapper.insertSelective(uspfGp);
+		return msg;
 	}
 	
 	//-------------------Func-------------------------------

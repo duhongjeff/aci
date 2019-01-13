@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<table class="easyui-datagrid" id="usgpList" title="基本用户列表" 
+<table class="easyui-datagrid" id="usgpList" title="用户组" 
        data-options="singleSelect:false,collapsible:true,pagination:true,url:'/uspfgrp/list',method:'get',pageSize:30,toolbar:toolbar">
     <thead>
         <tr>
@@ -79,7 +79,7 @@ function getSelectionsIds(){
         handler:function(){
         	var ids = getSelectionsIds();
         	if(ids.length == 0){
-        		$.messager.alert('提示','未选中商品!');
+        		$.messager.alert('提示','未选中!');
         		return ;
         	}
         	$.messager.confirm('确认','确定删除ID为 '+ids+' 的用户组吗？',function(r){
@@ -87,7 +87,7 @@ function getSelectionsIds(){
         	    	var params = {"ids":ids};
                 	$.post("/uspfgrp/delete/"+ids, function(data){
             			if(data.status == 200){
-            				$.messager.alert('提示','删除商品成功!',undefined,function(){
+            				$.messager.alert('提示','删除用户组成功!',undefined,function(){
             					$("#usgpList").datagrid("reload");
             				});
             			}

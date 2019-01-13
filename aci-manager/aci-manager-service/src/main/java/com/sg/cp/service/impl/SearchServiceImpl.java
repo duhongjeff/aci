@@ -21,7 +21,7 @@ import commontools.CommonEnums.AndOrNull;
 import easyuitools.CommonResult;
 import easyuitools.EasyUIDataGridResult;
 
-@Service
+//@Service
 public class SearchServiceImpl implements SearchService {
 	
 	@Value("${LIST_KEY}") private String LIST;
@@ -33,6 +33,18 @@ public class SearchServiceImpl implements SearchService {
 
 	@Autowired
 	private SearchDao searchdao;
+
+	private boolean isSolr;
+	
+	public SearchServiceImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public SearchServiceImpl(boolean isSolr) {
+		super();
+		this.isSolr = isSolr;
+	}
 
 	@Override
 	public CommonResult importAllSearchItems() throws Exception {
@@ -52,10 +64,20 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
-	public SolrDocumentList searchSolrDocumentList(Map<String,String> map) throws Exception {
-		SolrDocumentList searchList = searchdao.search(map, AndOrNull.AND);
+	public SolrDocumentList generalPojoSearch(Map<String,String> map, String className) throws Exception {
+		SolrDocumentList searchList = searchdao.solrSearch(map, AndOrNull.AND);
 		return searchList;
 
 	}
+
+	public boolean isSolr() {
+		return isSolr;
+	}
+
+	public void setSolr(boolean isSolr) {
+		this.isSolr = isSolr;
+	}
+
+
 
 }

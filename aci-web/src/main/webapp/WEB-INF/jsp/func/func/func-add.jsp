@@ -11,7 +11,7 @@
 		<table cellpadding="5">
 			<tr>
 				<td>功能ID</td>
-				<td><input class="easyui-textbox" type="text" name="functionid"
+				<td><input class="easyui-numberbox" type="text" name="functionid"
 					data-options="required:true" /></td>
 			</tr>
 			<tr>
@@ -21,12 +21,12 @@
 			</tr>
 			<tr>
 				<td>简介描述</td>
-				<td><input class="easyui-textbox" type="text" name="desc"
+				<td><input class="easyui-textbox" type="text" name="remark"
 					data-options="required:true" /></td>
 			</tr>
 			<tr>
 				<td>状态</td>
-				<td><input class="easyui-textbox" type="text" name="active"
+				<td><input class="easyui-textbox" type="text" name="status" id="statusid"
 					data-options="required:true" /></td>
 			</tr>
 		</table>
@@ -39,6 +39,13 @@
 	</div>
 </div>
 <script type="text/javascript">
+$('#statusid').combobox({
+	method : 'GET',
+	url : '/json/status.json',
+	valueField : 'text',
+	textField : 'description'
+});
+
 	var itemAddEditor;
 	//页面初始化完毕后执行此方法
 	$(function() {
@@ -87,7 +94,7 @@
 		//$("#itemAddForm").serialize()将表单序列号为key-value形式的字符串
 		$.post("/func/create", $("#itemAddForm").serialize(), function(data) {
 			if (data.status == 200) {
-				$.messager.alert('提示', '修改用户信息成功!', 'info', function() {
+				$.messager.alert('提示', '添加信息成功!', 'info', function() {
 					$("#itemAddWindow").window('close');
 					$("#funcList").datagrid("reload");
 				});

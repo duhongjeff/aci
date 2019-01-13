@@ -33,6 +33,9 @@
 				if (e.currentTarget.id === "leftmenusetting") {
 					$("#test").load('nav/leftmenusetting');
 				}
+				if (e.currentTarget.id === "logout") {
+					$("#test").load('user/logout');
+				}
 
 			});
 		});
@@ -47,6 +50,7 @@
 		<a id="leftmenufunctions" class="easyui-linkbutton">功能组</a>
 		<a id="leftmenupanel" class="easyui-linkbutton">主页面仪表盘</a>
 		<a id="leftmenusetting" class="easyui-linkbutton">主页面setting</a>
+		<a id="logout" class="easyui-linkbutton">退出登录</a>
 		<div id="tabs" class="easyui-tabs">
 
 			<div title="首页" style="padding: 20px;"></div>

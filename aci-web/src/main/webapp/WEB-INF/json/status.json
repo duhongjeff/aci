@@ -1,0 +1,18 @@
+[{
+    "id":1,
+    "text":"A",
+    "description":"Active",
+    "selected":true
+},{
+    "id":2,
+    "text":"I",
+    "description":"Inactive"
+},{
+    "id":3,
+    "text":"C",
+    "description":"Closed"
+},{
+    "id":4,
+    "text":"P",
+    "description":"Pending"
+}]

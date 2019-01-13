@@ -20,7 +20,7 @@
         </ul>
         <div class="extra">
         <span>我已经注册，现在就&nbsp;
-        	<a href="/page/login" class="flk13">登录</a>
+        	<a href="http://localhost:8081/sso/login" class="flk13">登录</a>
         </span>
         </div>
     </div>
@@ -32,7 +32,24 @@
 
                     <div class="fl item-ifo">
                         <div class="o-intelligent-regName">
-                            <input type="text" id="regName" name="userid" class="text" tabindex="1" autoComplete="off"
+                            <input type="text" id="userid" name="userid" class="text" tabindex="1" autoComplete="off"
+                                   onpaste="return false;"
+                                   value=""
+                                   onfocus="if(this.value=='') this.value='';this.style.color='#333'"
+                                   onblur="if(this.value=='') {this.value='';this.style.color='#999999'}"/>
+                            <i class="i-name"></i>
+                            <ul id="intelligent-regName" class="hide"></ul>
+                            <label id="regName_succeed" class="blank"></label>
+                            <label id="regName_error" class="hide"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" id="select-regName">
+                    <span class="label"><b class="ftx04">*</b>名称：</span>
+
+                    <div class="fl item-ifo">
+                        <div class="o-intelligent-regName">
+                            <input type="text" id="realname" name="realname" class="text" tabindex="1" autoComplete="off"
                                    onpaste="return false;"
                                    value=""
                                    onfocus="if(this.value=='') this.value='';this.style.color='#333'"

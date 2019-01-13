@@ -1,4 +1,7 @@
+com\sg\cp\mapper\ItemMapper.class
+com\sg\cp\mapper\DrevMapper.class
 com\sg\cp\mapper\FuncMapper.class
+com\sg\cp\mapper\HdayMapper.class
 com\sg\cp\mapper\UsgpFugpMapper.class
 com\sg\cp\mapper\UspfGpMapper.class
 com\sg\cp\mapper\UscrMapper.class

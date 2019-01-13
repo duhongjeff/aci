@@ -20,10 +20,12 @@ public interface UserLoginService {
 	 *登录失败：返回400
 	 */
 	public CommonResult login(String username,String password);
+	public CommonResult logout(String cookieValue);
 	/**
 	 * 根据token获取用户的信息
 	 * @param token
 	 * @return  TaotaoResult 应该包含用户的信息
 	 */
 	public CommonResult getUserByToken(String token);
+	
 }

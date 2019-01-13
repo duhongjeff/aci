@@ -48,7 +48,7 @@ public class FuncServiceImpl extends StaticGeneralService implements FuncService
 
 		List<Func> funcList = new ArrayList<Func>();
 
-		SolrDocumentList searchList = searchservice.searchSolrDocumentList(map);
+		SolrDocumentList searchList = searchservice.generalPojoSearch(map, null);
 
 		for (SolrDocument solrDocument : searchList) {
 			Func item = new Func();

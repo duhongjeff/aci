@@ -1,5 +1,7 @@
 package com.sg.cp.controller.sso;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,9 +26,9 @@ import easyuitools.CommonResult;
 public class UserLoginController {
 	@Autowired
 	private UserLoginService loginservice;
+	@Value("${SSO_URL}")
+	private String SSO_URL;
 	
-	@Value("${TT_TOKEN_KEY}")
-	private String TT_TOKEN_KEY;
 	/**
 	 * url:/user/login
 	 * 参数：username password
@@ -39,12 +41,26 @@ public class UserLoginController {
 		//1.引入服务
 		//2.注入服务
 		//3.调用服务
-		System.out.println("username"+username);
-		System.out.println("password"+password);
 		CommonResult result = loginservice.login(username, password);
 		//4.需要设置token到cookie中 可以使用 工具类  cookie需要跨域
 		if(result.getStatus()==200){
 			CookieUtils.setCookie(request, response,"TT_TOKEN", result.getData().toString());
+			CookieUtils.setCookie(request, response,"CURR_USER", username);
+		}
+		return result;
+	}
+	
+	@RequestMapping(value="/user/logout",method=RequestMethod.GET)
+	@ResponseBody
+	public CommonResult logout(HttpServletRequest request,HttpServletResponse response,String username,String password){
+		//System.out.println("here get the value: " + CookieUtils.getCookieValue(request, "TT_TOKEN")); 
+		CookieUtils.deleteCookie(request, response, "TT_TOKEN");
+		CookieUtils.deleteCookie(request, response, "CURR_USER");
+		CommonResult result = loginservice.logout(CookieUtils.getCookieValue(request, "TT_TOKEN"));
+		try {
+			response.sendRedirect(SSO_URL+"/sso/login?redirect="+request.getRequestURL().toString());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}
