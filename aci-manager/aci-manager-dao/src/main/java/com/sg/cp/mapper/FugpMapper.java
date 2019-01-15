@@ -2,6 +2,8 @@ package com.sg.cp.mapper;
 
 import com.sg.cp.pojo.Fugp;
 import com.sg.cp.pojo.FugpExample;
+import com.sg.cp.pojo.Func;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -61,4 +63,6 @@ public interface FugpMapper {
      * @mbggenerated Sat Dec 29 16:19:32 CST 2018
      */
     int updateByExample(@Param("record") Fugp record, @Param("example") FugpExample example);
+    
+    List<Fugp> selectFuncAndFugp(@Param("status") String status);
 }

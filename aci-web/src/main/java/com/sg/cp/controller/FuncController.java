@@ -2,6 +2,8 @@ package com.sg.cp.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -38,6 +40,24 @@ public class FuncController {
 		//2.注入服务
 		//3.调用服务的方法
 		return funcService.getFuncList(page, rows,CommonEnums.Status.A);
+	}
+	
+	@RequestMapping(value="/func/list/titleanddata",method=RequestMethod.GET)
+	@ResponseBody
+	public String getFuncListTitleAndData(){
+		return funcService.getFugpTitleAndData(CommonEnums.Status.A);
+	}
+	
+	@RequestMapping(value="/func/list/title",method=RequestMethod.GET)
+	@ResponseBody
+	public List<Fugp> getFuncListTitle(){
+		return funcService.getFugpList(CommonEnums.Status.A);
+	}
+	
+	@RequestMapping(value="/func/list/unmatchedfunc",method=RequestMethod.GET)
+	@ResponseBody
+	public List<Func> getUnMatchedFunc(){
+		return funcService.getUnMatchedFunc(CommonEnums.Status.A);
 	}
 
 	@RequestMapping(value="/func/update",method=RequestMethod.POST)

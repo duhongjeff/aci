@@ -44,7 +44,7 @@ public class StaticGeneralService{
 	@Autowired
 	private UsgpMapper usgpmapper;
 	@Autowired
-	private FuncMapper funcMapper;
+	protected FuncMapper funcMapper;
 	@Autowired
 	private FugpMapper fugpMapper;
 	@Autowired
@@ -258,6 +258,11 @@ public class StaticGeneralService{
 		FugpExample example = new FugpExample();
 		com.sg.cp.pojo.FugpExample.Criteria fugpCriteria = example.createCriteria();
 		return fugpMapper.selectByExample(example);
+	}
+	
+	//Get fugp title
+	protected List<Fugp> daoGetFugpTitleList(Status status){
+		return fugpMapper.selectFuncAndFugp(status.name());
 	}
 	
 	//Update

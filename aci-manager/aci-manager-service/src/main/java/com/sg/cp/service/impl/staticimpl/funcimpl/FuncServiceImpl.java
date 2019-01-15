@@ -11,13 +11,17 @@ import javax.jms.Destination;
 
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import com.alibaba.druid.support.json.JSONUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sg.cp.pojo.Fugp;
 import com.sg.cp.pojo.Func;
+import com.sg.cp.pojo.FuncExample;
 import com.sg.cp.pojo.Uspf;
 import com.sg.cp.service.JedisClient;
 import com.sg.cp.service.SearchService;
@@ -40,6 +44,7 @@ public class FuncServiceImpl extends StaticGeneralService implements FuncService
 	@Autowired
 	private SearchService searchservice;
 
+	
 	@Override
 	public EasyUIDataGridResult searchFunc(Func func) throws Exception {
 		
@@ -165,6 +170,68 @@ public class FuncServiceImpl extends StaticGeneralService implements FuncService
 		// 3.插入内容表中
 		String msg=super.daoCreateFugp(fugp);
 		return CommonResult.ok();
+	}
+
+	@Override
+	public String getFugpTitleAndData(Status status) {
+		List<Map<String,String>> dataList = new ArrayList<Map<String,String>>();
+		List<Fugp> list = super.daoGetFugpTitleList(status);
+		
+		List<Map> titleList = new ArrayList<Map>();
+		Map<String,String> titleMap=null;
+		
+		int maxsize=-1;
+		int curr=0;
+		for(Fugp f:list)
+		{
+			titleMap=new HashMap<String,String>();
+			titleMap.put("title", f.getFunctiongpname());
+			titleMap.put("field", f.getFunctiongpname());
+			titleMap.put("width", "100px");
+			titleList.add(titleMap);
+			int size = f.getFuncs().size();
+			if(size>maxsize) maxsize=size;
+		} 
+		
+		getProperList(dataList,list,curr,maxsize);
+		
+		System.out.println(JSONUtils.toJSONString(titleList));
+		System.out.println(JSONUtils.toJSONString(dataList));
+		
+		String finalJson= "{ \"total\":"+maxsize+","+"\"rows\" : "+JSONUtils.toJSONString(dataList)+", \"title\" : "+JSONUtils.toJSONString(titleList)+"}";
+		System.out.println(finalJson);
+		return finalJson;
+	}
+	
+	
+	@Override
+	public List<Fugp> getFugpList(Status status) {
+		return super.daoGetFugpList(status);
+	}
+	
+	@Override
+	public List<Func> getUnMatchedFunc(Status status){
+		FuncExample example = new FuncExample();
+		com.sg.cp.pojo.FuncExample.Criteria funcCriteria = example.createCriteria();
+		funcCriteria.andFuctiongpidIsNull().andStatusEqualTo(status.name());
+		return funcMapper.selectByExample(example);
+	}
+
+	private void getProperList(List<Map<String, String>> dataList, List<Fugp> list, int curr, int i) {
+		Map map = new HashMap();
+		for(Fugp f:list)
+		{
+			List flist =f.getFuncs();
+			if(flist.size()>0 && curr<flist.size())
+			{
+				map.put(f.getFunctiongpname(), f.getFuncs().get(curr).getFunctionname());
+			}
+			
+		} 
+		if(map!=null)
+			dataList.add(map);
+		if(curr<i)
+			getProperList(dataList,list,++curr,i);
 	}
 
 

@@ -1,5 +1,7 @@
 package com.sg.cp.service.funcservice;
 
+import java.util.List;
+
 import com.sg.cp.pojo.Fugp;
 import com.sg.cp.pojo.Func;
 
@@ -19,4 +21,7 @@ public interface FuncService {
 	public CommonResult deleteFugp(int fugpId);
 	public CommonResult createFugp(Fugp fugp);
 	
+	public String getFugpTitleAndData(Status status);
+	public List<Fugp> getFugpList(Status status);
+	public List<Func> getUnMatchedFunc(Status status);
 }

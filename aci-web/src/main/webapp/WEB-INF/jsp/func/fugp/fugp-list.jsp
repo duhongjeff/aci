@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<table class="easyui-datagrid" id="fugpList" title="基本用户列表" 
+<table class="easyui-datagrid" id="fugpList" title="功能组列表" 
        data-options="singleSelect:false,collapsible:true,pagination:true,url:'/fugp/list',method:'get',pageSize:30,toolbar:toolbar">
     <thead>
         <tr>
@@ -17,7 +17,7 @@
 </div>
 <div id="itemAddWindow" class="easyui-window" title="新建用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/func/fugp/fugp-add'" style="width:80%;height:80%;padding:10px;">
 </div>
-<div id="itemSearchWindow" class="easyui-window" title="搜索" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/func/fugp/fugp-search'" style="width:80%;height:80%;padding:10px;">
+<div id="itemSearchWindow" class="easyui-window" title="功能组 - 功能 匹配" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/func/fugp/fugp-match'" style="width:80%;height:80%;padding:10px;">
 </div>
 <script>
 
@@ -33,8 +33,8 @@
     }
     
     var toolbar = [{
-        text:'搜索',
-        iconCls:'icon-search',
+        text:'功能组-功能 匹配',
+        iconCls:'icon-sum',
         handler:function(){
         	$("#itemSearchWindow").window({}).window("open");
         }

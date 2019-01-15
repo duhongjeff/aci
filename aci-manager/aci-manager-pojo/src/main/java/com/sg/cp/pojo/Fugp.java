@@ -1,4 +1,6 @@
 package com.sg.cp.pojo;
+import java.util.List;
+
 import com.sg.cp.pojo.common.CommonPojo;
 
 public class Fugp extends CommonPojo {
@@ -64,4 +66,21 @@ public class Fugp extends CommonPojo {
     public void setFunctiongpname(String functiongpname) {
         this.functiongpname = functiongpname == null ? null : functiongpname.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Fugp [fuctiongpid=" + fuctiongpid + ", functiongpname=" + functiongpname + ", funcs=" + funcs.size() + "]";
+	}
+
+	/*--------Self Defined----------*/
+    private List<Func> funcs;
+    
+    public List<Func> getFuncs() {
+		return funcs;
+	}
+
+	public void setFuncs(List<Func> funcs) {
+		this.funcs = funcs;
+	}
+	
 }

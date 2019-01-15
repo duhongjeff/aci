@@ -92,4 +92,17 @@ public class Func extends CommonPojo {
     public void setFuctiongpid(Integer fuctiongpid) {
         this.fuctiongpid = fuctiongpid;
     }
+    
+
+
+	//-----self defined-----
+    private Fugp fugp;
+    
+    public Fugp getFugp() {
+		return fugp;
+	}
+
+	public void setFugp(Fugp fugp) {
+		this.fugp = fugp;
+	}
 }

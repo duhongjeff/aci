@@ -1,0 +1,41 @@
+{  
+   "total":4,
+   "rows":[  
+      {  
+         "trader group":"stock",
+         "boss group":"reports",
+         "ops group":"static"
+      },
+      {  
+         "trader group":"p2p",
+         "boss group":"analyse tool",
+         "ops group":"bank account"
+      },
+      {  
+         "trader group":"bonds"
+      },
+      {  
+         "trader group":"deposite"
+      },
+      {  
+
+      }
+   ],
+   "title":[  
+      {  
+         "field":"ops group",
+         "width":"100px",
+         "title":"ops group"
+      },
+      {  
+         "field":"trader group",
+         "width":"100px",
+         "title":"trader group"
+      },
+      {  
+         "field":"boss group",
+         "width":"100px",
+         "title":"boss group"
+      }
+   ]
+}

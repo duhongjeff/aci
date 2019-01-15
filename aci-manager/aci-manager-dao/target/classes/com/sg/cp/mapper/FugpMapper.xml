@@ -15,7 +15,13 @@
     <result column="lupdate" jdbcType="TIMESTAMP" property="lupdate" />
     <result column="creby" jdbcType="VARCHAR" property="creby" />
     <result column="lupby" jdbcType="VARCHAR" property="lupby" />
-  </resultMap>
+    
+    <collection property="funcs" ofType="com.sg.cp.pojo.Func">
+		<id property="functionid" column="functionid" />
+		<result property="functionname" column="functionname" />
+		<result property="functionid" column="functionid" />
+	</collection>
+  </resultMap>  
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbggenerated
@@ -262,4 +268,9 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+    <select id="selectFuncAndFugp" resultMap="BaseResultMap">
+		SELECT func.functionid,func.functionname,func.fuctiongpid,fugp.* FROM fugp JOIN func ON fugp.fuctiongpid = func.fuctiongpid
+		WHERE fugp.`status`= #{status,jdbcType=VARCHAR}
+	</select>
 </mapper>
